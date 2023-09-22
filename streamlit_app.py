@@ -83,23 +83,7 @@ else:
 st.write('-------------------------')
 
 
-# In[ ]:
 
-
-# create columns to right align restart button
-col1, col2, col3 = st.columns([1,1,.5])
-click_clear = col3.button('Start Again')
-
-# set fields back to 0 when clicking button
-if click_clear:
-
-    userRFF = placeholder_c.number_input('Enter number of Copper: ', 
-                                               min_value= 0, value= 0, key= 'redo')
-    userNBPart = placeholder_s.number_input('Enter number of Silver: ', 
-                                               min_value= 1, value= 1, key= 'redo1')
-
-    col3.write('The values have been reset')
-    st.balloons()
 
 
 
