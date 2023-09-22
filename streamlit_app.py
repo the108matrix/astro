@@ -34,8 +34,8 @@ placeholder_s = st.empty()
 
 # have user input the amount they have for each coin
 
-userNumCopper = placeholder_c.number_input('Revenu fiscal de reference 2023 (sur les revenus 2022) en euros: ', min_value= 0, value=100000)
-userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 1.,format="%.2f", step=0.5)
+userRFF = placeholder_c.number_input('Revenu fiscal de reference 2023 (sur les revenus 2022) en euros: ', min_value= 0, value=100000)
+userNBPart = placeholder_s.number_input('Nombre de parts ', min_value= 1.,format="%.2f", step=0.5)
 
 
 
@@ -44,10 +44,10 @@ userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 1.,for
 
 # tell user how much they have in gold pieces
 
-totalGold = (userNumCopper / userNumSilver / 12) 
-totalGold = round(totalGold)
+QF = (userRFF / userNBPart / 12) 
+QF = round(QF)
 
-st.subheader(f'Votre Quotient Familial {totalGold:,d} .')
+st.subheader(f'Votre Quotient Familial {QF:,d} .')
 
 
 # In[ ]:
@@ -55,21 +55,21 @@ st.subheader(f'Votre Quotient Familial {totalGold:,d} .')
 
 st.write('')
 
-if totalGold > 2200:
+if QF > 2200:
     st.write('Vous avez l\'enveloppe standard de 183 euros.')
     st.write('Pas besoin de venir nous voir :) ')
-elif 1700 < totalGold <= 2200 :
+elif 1700 < QF <= 2200 :
     st.write('Vous avez une enveloppe de 250 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
-    st.write('Nous avons besoin de votre avis d\'imposition ')
-elif 1200 < totalGold <= 1700:
+    st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
+elif 1200 < QF <= 1700:
     st.write('Vous avez une enveloppe de 350 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
-    st.write('Nous avons besoin de votre avis d\'imposition ')
-elif totalGold <= 1200:
+    st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
+elif QF <= 1200:
     st.write('Vous avez une enveloppe de 450 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
-    st.write('Nous avons besoin de votre avis d\'imposition ')
+    st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
 else: 
     st.write('Vous avez une enveloppe bonifiée.')
     st.write('Vous pouvez venir nous voir!! :) ')
@@ -93,9 +93,9 @@ click_clear = col3.button('Start Again')
 # set fields back to 0 when clicking button
 if click_clear:
 
-    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
+    userRFF = placeholder_c.number_input('Enter number of Copper: ', 
                                                min_value= 0, value= 0, key= 'redo')
-    userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
+    userNBPart = placeholder_s.number_input('Enter number of Silver: ', 
                                                min_value= 1, value= 1, key= 'redo1')
 
     col3.write('The values have been reset')
