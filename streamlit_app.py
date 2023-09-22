@@ -139,7 +139,7 @@ if click_clear:
     userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
                                                min_value= 0, value= 0, key= 'redo')
     userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
-                                               min_value= 0, value= 0, key= 'redo1')
+                                               min_value= 1, value= 1, key= 'redo1')
 
     col3.write('The values have been reset')
     st.balloons()
