@@ -15,34 +15,12 @@ import time
 df = pd.DataFrame()
 
 
-# In[7]:
-
-
 st.title('CSE Calcul ASC 2023')
 st.write('')
-
-
-# In[ ]:
-
 
 # add some space between photo and instructions
 st.write('')
 st.subheader('vous pouvez saisir vos informations pour le calcul ASC')
-
-
-# In[9]:
-
-
-# Function to convert 
-copper = 1/100
-silver = 1/10
-electrum = 1/2
-gold = 1
-platinum = 10
-
-
-
-# In[ ]:
 
 
 # create placeholders to clear inputs when clicking "start over" button
@@ -82,10 +60,16 @@ if totalGold > 2200:
     st.write('Pas besoin de venir nous voir :) ')
 elif 1700 < totalGold <= 2200 :
    st.write('Vous avez une enveloppe de 250 euros.')
+    st.write('Vous pouvez venir nous voir!! :) ')
+    st.write('Nous avons besoin de votre avis d\'imposition ')
 elif 1200 < totalGold <= 1700:
     st.write('Vous avez une enveloppe de 350 euros.')
+    st.write('Vous pouvez venir nous voir!! :) ')
+    st.write('Nous avons besoin de votre avis d\'imposition ')
 elif totalGold <= 1200:
     st.write('Vous avez une enveloppe de 450 euros.')
+    st.write('Vous pouvez venir nous voir!! :) ')
+    st.write('Nous avons besoin de votre avis d\'imposition ')
 else: 
     st.write('Vous avez une enveloppe bonifiée.')
     st.write('Vous pouvez venir nous voir!! :) ')
