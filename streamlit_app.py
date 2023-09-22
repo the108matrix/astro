@@ -47,7 +47,7 @@ userNBPart = placeholder_s.number_input('Nombre de parts ', min_value= 1.,format
 QF = (userRFF / userNBPart / 12) 
 QF = round(QF)
 
-st.subheader(f'Votre Quotient Familial {QF:,d} .')
+st.write(f'Votre Quotient Familial {QF:,d} .')
 
 
 # In[ ]:
@@ -56,18 +56,18 @@ st.subheader(f'Votre Quotient Familial {QF:,d} .')
 st.write('')
 
 if QF > 2200:
-    st.write('Vous avez l\'enveloppe standard de 183 euros.')
+    st.subheader('Vous avez l\'enveloppe standard de 183 euros.')
     st.write('Pas besoin de venir nous voir :) ')
 elif 1700 < QF <= 2200 :
-    st.write('Vous avez une enveloppe de 250 euros.')
+    st.subheader('Vous avez une enveloppe de 250 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
 elif 1200 < QF <= 1700:
-    st.write('Vous avez une enveloppe de 350 euros.')
+    st.subheader('Vous avez une enveloppe de 350 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
 elif QF <= 1200:
-    st.write('Vous avez une enveloppe de 450 euros.')
+    st.subheader('Vous avez une enveloppe de 450 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
 else: 
