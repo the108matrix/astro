@@ -18,15 +18,7 @@ df = pd.DataFrame()
 # In[7]:
 
 
-st.title('Dungeons & Dragons Currency Converter')
-st.write('')
-
-st.image('images/DND.jpeg', use_column_width= True)
-
-# create columns to right align photo source text
-col1, col2, col3 = st.columns([1,1,.5])
-click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/dnd-how-to-play-dungeons-dragons-5e-guide-spells-dice-character-sheets-dm)')
-
+st.title('CSE Calcul ASC 2023')
 st.write('')
 
 
