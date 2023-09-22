@@ -125,18 +125,14 @@ if userSpendGold > totalGold:
 else:
 # code below works fast but prioritizes gold and plat first
 #     coins = [
-#     { "value": gold, "count":  userNumGold },   
-#     { "value": platinum, "count":  userNumPlatinum },   
-#     { "value":  electrum, "count":  userNumElectrum },
+
 #     { "value":  silver, "count":  userNumSilver },
 #     { "value":  copper, "count": userNumCopper } 
 #     ]
     coins = [
-    { "value": gold, "count":  userNumGold },
     { "value":  copper, "count": userNumCopper },
     { "value":  silver, "count":  userNumSilver },
-    { "value":  electrum, "count":  userNumElectrum },
-    { "value": platinum, "count":  userNumPlatinum },   
+
     ]
     
     
@@ -150,7 +146,7 @@ else:
 # In[ ]:
 
 
-numCoins = userNumCopper + userNumSilver + userNumElectrum + userNumGold + userNumPlatinum
+numCoins = userNumCopper + userNumSilver
 if numCoins == 0:
     st.write('')
 elif numCoins >= 5000:
@@ -202,15 +198,6 @@ if click_clear:
                                                min_value= 0, value= 0, key= 'redo')
     userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
                                                min_value= 0, value= 0, key= 'redo1')
-    userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', 
-                                                 min_value= 0, value= 0, key= 'redo2')
-    userNumGold = placeholder_g.number_input('Enter number of Gold: ', 
-                                             min_value= 0, value= 0, key= 'redo3')
-    userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', 
-                                                 min_value= 0, value= 0, key= 'redo4')
-    userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', 
-                                               min_value= 0, value= 0, key= 'redo5')
-
 
     col3.write('The values have been reset')
     st.balloons()
