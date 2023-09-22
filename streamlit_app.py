@@ -107,6 +107,12 @@ st.write('')
 if totalGold > 2200:
     st.write('Vous avez l\'enveloppe standard de 183 euros.')
     st.write('Pas besoin de venir nous voir :) ')
+elif totalGold <= 2200:
+   st.write('Vous avez une enveloppe de 250 euros.')
+elif numCoins <= 1700:
+    st.write('Vous avez une enveloppe de 350 euros.')
+elif numCoins <= 1200:
+    st.write('Vous avez une enveloppe de 450 euros.')
 else: 
     st.write('Vous avez une enveloppe bonifiée.')
     st.write('Vous pouvez venir nous voir!! :) ')
