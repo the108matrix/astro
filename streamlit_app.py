@@ -83,8 +83,8 @@ placeholder_s = st.empty()
 
 # have user input the amount they have for each coin
 
-userNumCopper = placeholder_c.number_input('Revenu fiscal de reference 2023 (sur les revenus 2022) en euros: ', min_value= 0, value=100000, step=0.5)
-userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 1, step=0.5)
+userNumCopper = placeholder_c.number_input('Revenu fiscal de reference 2023 (sur les revenus 2022) en euros: ', min_value= 0, value=100000,step=1.,format="%.2f")
+userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 1, step=1.,format="%.2f")
 
 
 
