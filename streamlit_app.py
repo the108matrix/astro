@@ -83,7 +83,7 @@ placeholder_s = st.empty()
 
 # have user input the amount they have for each coin
 
-userNumCopper = placeholder_c.number_input('Revenu de reference 2023 (sur les revenus 2022: ', min_value= 0)
+userNumCopper = placeholder_c.number_input('Revenu de reference 2023 (sur les revenus 2022): ', min_value= 0)
 userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 0)
 
 
@@ -93,10 +93,10 @@ userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 0)
 
 # tell user how much they have in gold pieces
 
-totalGold = (userNumCopper * copper) + (userNumSilver * silver) 
+totalGold = (userNumCopper / userNumSilver / 12) 
 totalGold = round(totalGold)
 
-st.subheader(f'You have {totalGold:,d} gold pieces.')
+st.subheader(f'Votre Quotient Familial {totalGold:,d} .')
 
 
 # In[ ]:
