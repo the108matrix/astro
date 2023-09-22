@@ -27,7 +27,7 @@ st.write('')
 
 # add some space between photo and instructions
 st.write('')
-st.subheader('Please input the number of coins you have for each coin type')
+st.subheader('vous pouvez saisir vos informations pour le calcul ASC')
 
 
 # In[9]:
@@ -50,7 +50,7 @@ def getCoins(coins, amount, coinIndex = 0):
         return None # don't have enough money / coins
     
     # names of coins to print later
-    coinNames = ['', 'Gold', 'Copper', 'Silver', 'Electrum', 'Platinum']
+    coinNames = ['', 'Copper', 'Silver']
     
     # start calculations
     coin = coins[coinIndex] # 1= gold, 2= platinum, ...
@@ -75,9 +75,7 @@ def getCoins(coins, amount, coinIndex = 0):
 # create placeholders to clear inputs when clicking "start over" button
 placeholder_c = st.empty()
 placeholder_s = st.empty()
-placeholder_e = st.empty()
-placeholder_g = st.empty()
-placeholder_p = st.empty()
+
 
 
 # In[9]:
@@ -85,11 +83,9 @@ placeholder_p = st.empty()
 
 # have user input the amount they have for each coin
 
-userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
-userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
+userNumCopper = placeholder_c.number_input('Revenu de reference 2023 (sur les revenus 2022: ', min_value= 0)
+userNumSilver = placeholder_s.number_input('Nombre de parts ', min_value= 0)
+
 
 
 # In[ ]:
@@ -97,7 +93,7 @@ userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_v
 
 # tell user how much they have in gold pieces
 
-totalGold = (userNumCopper * copper) + (userNumSilver * silver) + (userNumElectrum * electrum) +     (userNumGold) + (userNumPlatinum * platinum)
+totalGold = (userNumCopper * copper) + (userNumSilver * silver) 
 totalGold = round(totalGold)
 
 st.subheader(f'You have {totalGold:,d} gold pieces.')
