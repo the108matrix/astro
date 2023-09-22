@@ -41,33 +41,6 @@ gold = 1
 platinum = 10
 
 
-def getCoins(coins, amount, coinIndex = 0):
-    
-    amount = float(amount)
-    if amount == 0:
-        return [] # all done! You did it!
-    if coinIndex >= len(coins):
-        return None # don't have enough money / coins
-    
-    # names of coins to print later
-    coinNames = ['', 'Copper', 'Silver']
-    
-    # start calculations
-    coin = coins[coinIndex] # 1= gold, 2= platinum, ...
-    coinIndex += 1 
-    # First, take as may as possible from first listed coin (will start at Index 1 (gold))
-    canTake = int(min(amount / coin['value'], coin['count']))
-    
-    #Reduce the number taken from this coin until success
-    for count in np.arange(canTake, -1.0, -1):  # take away 1 until count reaches 0
-        
-        # Recurse to decide how many to take from next coin
-        change = getCoins(coins, amount - coin['value'] * count, coinIndex)
-        if change != None: # Success! We are done!
-            if count: # Register this number for this coin
-                return change + [{'Coin Name': coinNames[coinIndex], 'Amount': int(count)}]
-            return change
-
 
 # In[ ]:
 
