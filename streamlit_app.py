@@ -3,14 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-"""
-# Welcome to Streamlit!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
-
-st.title('This is a title')
+st.title('Welcome to the **SHS Computer Science Site
+st.header('This brand new site, coded in Python with hosting/library provided by _Streamlit.io_, is for all things Computer Science within Sahuarita High School, this website will provide resources for things such as the CS TSA Test.')
