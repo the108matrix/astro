@@ -5,5 +5,5 @@ import streamlit as st
 
 
 
-st.title('Welcome to the **SHS Computer Science Site**')
+st.title('Welcome to the _**SHS Computer Science Site**_')
 st.header('This brand new site, coded in Python with hosting/library provided by _Streamlit.io_, is for all things Computer Science within Sahuarita High School, this website will provide resources for things such as the CS TSA Test.')
