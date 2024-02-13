@@ -19,10 +19,10 @@ if suggestions != "":
   # start TLS for security
   s.starttls()
   # Authentication
-  s.login("sender_email_id", "sender_email_id_password")
+  s.login("max.ramirez@susdlearns.us", "302306SUSDD")
   # message to be sent
   message = "Message_you_need_to_send"
   # sending the mail
-  s.sendmail("sender_email_id", "receiver_email_id", message)
+  s.sendmail("max.ramirez@susdlearns.us", "max.ramirez@susdlearns.us", message)
   # terminating the session
   s.quit()
