@@ -12,3 +12,6 @@ st.divider()
 
 suggestions = st.text_input('Have any suggestions? Feedback such as bugs or even suggestions can help make the site better!')
 
+st.divider()
+
+st.text("This site is currently under construction, so please be patient with the site. Due to the limitations of the platform of the previous site, I have decided that it would be best to start fresh. I will be adding more features to the site as time goes on. Thank you.")
