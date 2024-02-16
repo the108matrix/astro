@@ -1,8 +1,6 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
 
-#names= ['Date_Time','latitude','longitude','Depth(Km)','Type','Magnitude','Location','EventID']
 df =  pd.read_csv("/home/murat/MEGA/streamlit/last_aftershocks.csv",sep=";") 
 
     
