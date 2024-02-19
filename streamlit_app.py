@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df =  pd.read_csv("/home/murat/MEGA/streamlit/last_aftershocks.csv",sep=";") 
+df =  pd.read_csv("last_aftershocks.csv",sep=";") 
 
     
 st.write("Here's our first map:")
