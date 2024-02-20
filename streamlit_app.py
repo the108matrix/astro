@@ -16,14 +16,12 @@ def load_data():
     data = pd.read_csv(DATA_PATH,sep=';')
     #data['Date'] = pd.to_datetime(data['Date'],format='%Y-%m-%d T%h%m%s' ).dt.strftime('%Y-%m-%d')
     return data
-
+df = load_data()
 st.title('Earthquakes')
 
 # Load rows of data into the dataframe.
 if st.checkbox('Show dataframe'):
-    df = load_data()
-
-st.write(df)
+    st.write(df)
 
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 
