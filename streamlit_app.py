@@ -10,7 +10,6 @@ import geopandas as gpd
 # Load data
 st.title('Earthquakes')
 
-
 DATA_PATH = ('last_aftershocks.csv')
 
 def load_data():
@@ -21,13 +20,10 @@ def load_data():
 # Load rows of data into the dataframe.
 if st.checkbox('Show dataframe'):
     df = load_data()
-    
-    
+   
 gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude))
 
 st.write(df)
-
-
 
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 
