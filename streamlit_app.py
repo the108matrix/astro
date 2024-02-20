@@ -1,60 +1,66 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
-import altair as alt
-import datetime
-import time
 
-#########################################################################################
 # Load data
-
-
-DATA_PATH = ('last_aftershocks.csv')
+DATA_PATH = 'last_aftershocks.csv'
 
 def load_data():
-    data = pd.read_csv(DATA_PATH,sep=';')
-    #data['Date'] = pd.to_datetime(data['Date'],format='%Y-%m-%d T%h%m%s' ).dt.strftime('%Y-%m-%d')
+    data = pd.read_csv(DATA_PATH, sep=';')
     return data
+
 df = load_data()
+
+# UI
 st.title('Earthquakes')
 
-# Load rows of data into the dataframe.
+# Show data checkbox
 if st.checkbox('Show data'):
     st.write(df)
+    
 
-df['Date'] = pd.to_datetime(df['Date']).dt.date
+#df['Date'] = pd.to_datetime(df['Date']).dt.date
+df['DateOnly'] = df['Date'].str.split('T').str[0]
 
-# find number of Earthquake 
-earthquake_count = df.groupby('Date').size()
-
-# create a nw data frame 
-deprem_df = pd.DataFrame({'Date': earthquake_count.index, 'count_eq': earthquake_count.values})
+# Yeni oluşturulan tarih sütununu datetime formatına çevir
+df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%Y-%m-%d')
 
 
-#Streamlit application
-st.title('Number of Earthquake Per Day')
+#df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%dT%H:%M:%S')
+# Date range selection
+min_date = df['DateOnly'].min()
+max_date = df['DateOnly'].max()
+
+
+
+
+start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date)
+end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date)
+start_date = pd.to_datetime(start_date)
+end_date = pd.to_datetime(end_date)
+
+print(start_date,end_date)
+
+# Filter data based on selected date range
+#df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%dT%H:%M:%S').dt.date
+filtered_df = df[(df['DateOnly'] >= start_date) & (df['DateOnly'] <= end_date)]
+
+# Number of earthquakes per day
+earthquake_count = filtered_df.groupby('DateOnly').size()
+deprem_df = pd.DataFrame({'DateOnly': earthquake_count.index, 'count_eq': earthquake_count.values})
+
+# Show table checkbox
 if st.checkbox('Show table'):
     st.write(deprem_df)
+    
+# Show table checkbox
+if st.checkbox('Show selected data'):
+    st.write(filtered_df)
 
-# plotting
-st.line_chart(deprem_df.set_index('Date'))
 
-#bar chart
-#fig, ax = plt.subplots()
-#ax.bar(deprem_df['Date'], deprem_df['count_eq'])
-#plt.xticks(rotation=45, ha='right')
-#plt.xlabel('Date')
-#plt.ylabel('Count')
-#plt.title('Number of Earthquake')
-#st.pyplot(fig)
+# Plotting
+st.line_chart(deprem_df.set_index('DateOnly'))
 
-# explanation fo plotting
-#st.write("""
-#plot, Number of earthquake per day.
-#""")
-
+# Earthquake Map
 st.title('Earthquake Map')
-
-# Map
-st.map(df,size=20, color='#bb55ff')
+st.map(filtered_df, size=20, color='#bb55ff')
