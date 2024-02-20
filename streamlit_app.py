@@ -20,7 +20,7 @@ df = load_data()
 st.title('Earthquakes')
 
 # Load rows of data into the dataframe.
-if st.checkbox('Show dataframe'):
+if st.checkbox('Show data'):
     st.write(df)
 
 df['Date'] = pd.to_datetime(df['Date']).dt.date
@@ -30,11 +30,12 @@ earthquake_count = df.groupby('Date').size()
 
 # create a nw data frame 
 deprem_df = pd.DataFrame({'Date': earthquake_count.index, 'count_eq': earthquake_count.values})
-print(deprem_df)
+
 
 #Streamlit application
 st.title('Number of Earthquake Per Day')
-st.write(deprem_df)
+if st.checkbox('Show table'):
+    st.write(deprem_df)
 
 # plotting
 st.line_chart(deprem_df.set_index('Date'))
