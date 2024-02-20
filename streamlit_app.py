@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import altair as alt
 import datetime
 import time
@@ -42,18 +42,18 @@ st.write(deprem_df)
 st.line_chart(deprem_df.set_index('Date'))
 
 #bar chart
-fig, ax = plt.subplots()
-ax.bar(deprem_df['Date'], deprem_df['count_eq'])
-plt.xticks(rotation=45, ha='right')
-plt.xlabel('Date')
-plt.ylabel('Count')
-plt.title('Number of Earthquake')
-st.pyplot(fig)
+#fig, ax = plt.subplots()
+#ax.bar(deprem_df['Date'], deprem_df['count_eq'])
+#plt.xticks(rotation=45, ha='right')
+#plt.xlabel('Date')
+#plt.ylabel('Count')
+#plt.title('Number of Earthquake')
+#st.pyplot(fig)
 
 # explanation fo plotting
-st.write("""
-plot, Number of earthquake per day.
-""")
+#st.write("""
+#plot, Number of earthquake per day.
+#""")
 
 st.title('Earthquake Map')
 
