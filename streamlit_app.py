@@ -5,10 +5,9 @@ import altair as alt
 import datetime
 import time
 import matplotlib.pyplot as plt
-import geopandas as gpd
 #########################################################################################
 # Load data
-st.title('Earthquakes')
+
 
 DATA_PATH = ('last_aftershocks.csv')
 
@@ -17,11 +16,11 @@ def load_data():
     #data['Date'] = pd.to_datetime(data['Date'],format='%Y-%m-%d T%h%m%s' ).dt.strftime('%Y-%m-%d')
     return data
 
+st.title('Earthquakes')
+
 # Load rows of data into the dataframe.
 if st.checkbox('Show dataframe'):
     df = load_data()
-   
-gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude))
 
 st.write(df)
 
