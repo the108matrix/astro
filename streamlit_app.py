@@ -61,8 +61,7 @@ with col2:
     # Show selected data checkbox
     tab1, tab2,tab3,tab4= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
     # Earthquake Map
-    tab1.subheader("Map")
-    tab1.title('Earthquake Map')
+    tab1.subheader(" EarthquakeMap")
     tab1.map(filtered_df, size=20, color='#bb55ff')
     
     tab2.subheader("Number of Earthquake")
