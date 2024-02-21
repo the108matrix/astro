@@ -13,7 +13,8 @@ df = load_data()
 # UI
 
 # Split the screen into two columns
-col1, col15,col2 = st.columns([5,1, 25])
+#col1, col15,col2 = st.columns([0.15,0.5, 0.6])
+col1, col15,col2 = st.columns([1,0.5,2])
 
 # Parameters in the left column
 with col1:
@@ -52,24 +53,25 @@ with col2:
     st.title('Turkey Earthquakes')
     # Show data checkbox
     if st.checkbox('Show data'):
-        st.write(df)
+        st.dataframe(df)
 
     # Show table checkbox
     
     
     # Show selected data checkbox
-    tab1, tab2,tab3= st.tabs(["🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
-    tab1.subheader("Number of Earthquake")
-    tab1.write(deprem_df)
+    tab1, tab2,tab3,tab4= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
+    # Earthquake Map
+    tab1.subheader("Map")
+    tab1.title('Earthquake Map')
+    tab1.map(filtered_df, size=20, color='#bb55ff')
+    
+    tab2.subheader("Number of Earthquake")
+    tab2.write(deprem_df)
 
     
-    tab2.subheader("Filtered Data")
-    tab2.write(filtered_df)
+    tab3.subheader("Filtered Data")
+    tab3.write(filtered_df)
 
     # Plotting
-    tab3.subheader("Chart")
-    tab3.line_chart(deprem_df.set_index('DateOnly'))
-
-    # Earthquake Map
-    st.title('Earthquake Map')
-    st.map(filtered_df, size=20, color='#bb55ff')
+    tab4.subheader("Chart")
+    tab4.bar_chart(deprem_df.set_index('DateOnly'))
