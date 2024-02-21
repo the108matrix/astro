@@ -13,7 +13,7 @@ df = load_data()
 # UI
 
 # Split the screen into two columns
-col1, col2 = st.columns([1, 3])
+col1, col15,col2 = st.columns([5,1, 25])
 
 # Parameters in the left column
 with col1:
@@ -46,6 +46,8 @@ earthquake_count = filtered_df.groupby('DateOnly').size()
 deprem_df = pd.DataFrame({'DateOnly': earthquake_count.index, 'count_eq': earthquake_count.values})
 
 # Show table in the right column
+with col15:
+    st.empty()
 with col2:
     st.title('Turkey Earthquakes')
     # Show data checkbox
