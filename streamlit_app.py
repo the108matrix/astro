@@ -16,7 +16,7 @@ df = load_data()
 st.title('Earthquakes')
 
 # Show data checkbox
-if st.checkbox('Show data'):
+if st.checkbox('Show all data'):
     st.write(df)
     
 
