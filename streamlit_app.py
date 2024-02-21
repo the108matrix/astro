@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Load data
-DATA_PATH = 'last_aftershocks.csv'
+DATA_PATH = 'turkey_earthquakes.csv'
 
 def load_data():
     data = pd.read_csv(DATA_PATH, sep=';')
