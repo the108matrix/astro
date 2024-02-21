@@ -26,16 +26,16 @@ with col1:
     df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%d-%m-%Y')
     min_date = df['DateOnly'].min()
     max_date = df['DateOnly'].max()
-    start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date,value=5)
-    end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date,value=9)
+    start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date)
+    end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date)
     start_date = pd.to_datetime(start_date)
     
     end_date = pd.to_datetime(end_date)
 
     
     # Magnitude range selection
-    min_mag = st.number_input('Minimum Magnitude', min_value=0.0, max_value=10.0)
-    max_mag = st.number_input('Maximum Magnitude', min_value=0.0, max_value=10.0)
+    min_mag = st.number_input('Minimum Magnitude', min_value=0.0, max_value=10.0,value=5)
+    max_mag = st.number_input('Maximum Magnitude', min_value=0.0, max_value=10.0,value=9)
 
 # Filter data based on selected date range and magnitude range
 filtered_df = df[(df['DateOnly'] >= start_date) & (df['DateOnly'] <= end_date)]
