@@ -18,16 +18,12 @@ st.title('Earthquakes')
 if st.checkbox('Show data'):
     st.write(df)
     
-
-#df['Date'] = pd.to_datetime(df['Date']).dt.date
 df['DateOnly'] = df['Date'].str.split('T').str[0]
 df['DateOnly'] = df['DateOnly'].str.replace('/','-')
 
-# Yeni oluşturulan tarih sütununu datetime formatına çevir
+# convert new column into date
 df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%d-%m-%Y')
 
-
-#df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%dT%H:%M:%S')
 # Date range selection
 min_date = df['DateOnly'].min()
 max_date = df['DateOnly'].max()
@@ -59,7 +55,6 @@ if st.checkbox('Show table'):
 # Show table checkbox
 if st.checkbox('Show selected data'):
     st.write(filtered_df)
-
 
 # Plotting
 st.line_chart(deprem_df.set_index('DateOnly'))
