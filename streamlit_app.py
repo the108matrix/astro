@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+
 # Load data
 DATA_PATH = 'turkey_earthquakes.csv'
 
@@ -61,9 +62,24 @@ with col2:
     # Show selected data checkbox
     tab1, tab2,tab3,tab4= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
     # Earthquake Map
-    tab1.subheader(" EarthquakeMap")
-    tab1.map(filtered_df, size=20, color='#bb55ff')
+    # Magnitude ranges for color-coding
     
+    # Draw the map with color-coded circles based on Magnitude
+    tab1.subheader("Earthquake Map")
+    #magnitude_ranges = [(0, 4), (4, 5), (5, 6), (6, float('inf'))]
+    # Corresponding colors for each range
+    #color_scale = ['#00FF00', '#FFFF00', '#FFA500', '#FF0000']
+
+    # Create a new column to store color information based on Magnitude ranges
+    #filtered_df['Color'] = pd.cut(filtered_df['Magnitude'], bins=[range[0] for range in magnitude_ranges] + [float('inf')], labels=color_scale, right=False)
+
+    if not filtered_df.empty:
+        #tab1.map(filtered_df, size=20, color='Color')
+        tab1.map(filtered_df, size=20, color='#00bb00')
+
+    else:
+        tab1.write("No earthquakes found in the selected range.")
+        
     tab2.subheader("Number of Earthquake")
     tab2.write(deprem_df)
 
