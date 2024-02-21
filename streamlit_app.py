@@ -21,9 +21,10 @@ if st.checkbox('Show data'):
 
 #df['Date'] = pd.to_datetime(df['Date']).dt.date
 df['DateOnly'] = df['Date'].str.split('T').str[0]
+df['DateOnly'] = df['DateOnly'].str.replace('/','-')
 
 # Yeni oluşturulan tarih sütununu datetime formatına çevir
-df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%Y-%m-%d')
+df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%d-%m-%Y')
 
 
 #df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%dT%H:%M:%S')
