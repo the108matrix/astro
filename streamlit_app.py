@@ -34,8 +34,8 @@ with col1:
 
     
     # Magnitude range selection
-    min_mag = st.number_input('Minimum Magnitude', min_value=0.0, max_value=10.0,value=5)
-    max_mag = st.number_input('Maximum Magnitude', min_value=0.0, max_value=10.0,value=9)
+    min_mag = st.number_input('Minimum Magnitude', min_value=0.0, max_value=10.0,value=5.0)
+    max_mag = st.number_input('Maximum Magnitude', min_value=0.0, max_value=10.0, value=9.0)
 
 # Filter data based on selected date range and magnitude range
 filtered_df = df[(df['DateOnly'] >= start_date) & (df['DateOnly'] <= end_date)]
