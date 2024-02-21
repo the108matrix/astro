@@ -26,8 +26,8 @@ with col1:
     df['DateOnly'] = pd.to_datetime(df['DateOnly'], format='%d-%m-%Y')
     min_date = df['DateOnly'].min()
     max_date = df['DateOnly'].max()
-    start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date)
-    end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date)
+    start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date,value=5)
+    end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date,value=9)
     start_date = pd.to_datetime(start_date)
     
     end_date = pd.to_datetime(end_date)
