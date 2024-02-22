@@ -69,13 +69,44 @@ with col2:
     # Draw the map with color-coded circles based on Magnitude
     tab1.subheader("Earthquake Map")
 
+    # Draw the map with color-coded circles based on Magnitude
     if not filtered_df.empty:
-        #tab1.map(filtered_df, size=20, color='Color')
-        #tab1.map(filtered_df, size=20, color='#00bb00')
-        fig = px.scatter_mapbox(filtered_df, lat="latitude", lon="longitude", color="Magnitude", size="Magnitude", zoom=5, height=600, width=800) # Ayarlanan boyutlar
+    # Calculate the center of the map based on filtered data
+        center_lat = filtered_df['latitude'].mean()
+        center_lon = filtered_df['longitude'].mean()
+        
+        # Define magnitude ranges
+        magnitude_ranges = [(0, 3), (3.1, 4), (4.1, 5), (5.1, 6), (6.1, 7), (7.1, 8), (8.1, 9),(9.1,float('inf'))]
+        
+        # Set colors for each magnitude range
+        colors = ["yellow", "lightgreen", "blue", "orange", "red", "purple", "brown", "black"]
+        mag_labels =["0.0-3.0", "3.1-4.0", "4.1-5.0", "5.1-6.0", "6.1-7.0", "7.1-8.0", "8.1-9.0","9.1<"]
+        
+        # Create a column to store color information based on Magnitude ranges
+        filtered_df['Color'] = pd.cut(filtered_df['Magnitude'], bins=[range[0] for range in magnitude_ranges] + [float('inf')], labels=mag_labels, right=False)
+        # Define a color palette for each magnitude range
+        #color_palette = dict(zip(mag_labels, colors))
+        color_palette = {
+            "0.0-3.0": "yellow",
+            "3.1-4.0": "lightgreen",
+            "4.1-5.0": "blue",
+            "5.1-6.0": "orange",
+            "6.1-7.0": "red",
+            "7.1-8.0": "purple",
+            "8.1-9.0": "brown",
+            "9.1<": "black"
+        }
+        # Create scatter mapbox plot
+        fig = px.scatter_mapbox(filtered_df, lat="latitude", lon="longitude", color="Color", color_discrete_map=color_palette,
+                                size="Magnitude", zoom=5, height=600, width=800,hover_name="Date",hover_data=["Magnitude"],
+                                category_orders={"Color": ["0.0-3.0", "3.1-4.0", "4.1-5.0", "5.1-6.0", "6.1-7.0", "7.1-8.0", "8.1-9.0", "9.1<"]})
+        
+        
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-        tab1.plotly_chart(fig)
+        fig.update_traces(marker=dict(size=7)) # Set marker size
+        fig.update_layout(mapbox_center=dict(lat=center_lat, lon=center_lon))  # Center the map
+        
         # Define magnitude ranges
         magnitude_ranges = [(0, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9),(9,float('inf'))]
         
@@ -86,11 +117,18 @@ with col2:
         magnitude_df = pd.DataFrame({'Magnitude Range': ['{}-{}'.format(min_mag, max_mag) for min_mag, max_mag in magnitude_ranges], 'Count': magnitude_counts})
         
         # Plot the bar chart with plotly
-        fig = px.bar(magnitude_df, x='Magnitude Range', y='Count', text='Count')
-        fig.update_traces(texttemplate='%{text}', textposition='outside')
-        fig.update_layout(xaxis_tickangle=-45)
-        tab1.plotly_chart(fig)
+        fig_bar = px.bar(magnitude_df, x='Magnitude Range', y='Count', text='Count', color='Count')
+        fig_bar.update_traces(texttemplate='%{text}', textposition='outside')
+        fig_bar.update_layout(xaxis_tickangle=-45)
+        fig_bar.update_yaxes(type="log")
         
+        # Display the plots
+        tab1.plotly_chart(fig)
+        tab1.plotly_chart(fig_bar)
+
+    else:
+        tab1.write("No earthquakes found in the selected range.")
+            
     tab2.subheader("Number of Earthquake")
     tab2.write(deprem_df)
 
@@ -101,6 +139,3 @@ with col2:
     # Plotting
     tab4.subheader("Chart")
     tab4.bar_chart(deprem_df.set_index('DateOnly'))
-    
-    
-     
