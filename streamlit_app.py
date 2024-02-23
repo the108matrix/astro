@@ -20,7 +20,6 @@ col1, col15,col2 = st.columns([1,0.5,2])
 # Parameters in the left column
 with col1:
     st.subheader('Filter Parameters')
-    
     # Date range selection
     df['DateOnly'] = df['Date'].str.split(' ').str[0]
     df['DateOnly'] = df['DateOnly'].str.replace('/','-')
