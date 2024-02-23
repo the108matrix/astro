@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import math
 
 
 # Load data
@@ -98,29 +99,59 @@ with col2:
         }
         # Create scatter mapbox plot
         fig = px.scatter_mapbox(filtered_df, lat="latitude", lon="longitude", color="Color", color_discrete_map=color_palette,
-                                size="Magnitude", zoom=5, height=600, width=800,hover_name="Date",hover_data=["Magnitude"],
+                                size="Magnitude", zoom=4, height=400, width=600,hover_name="Date",hover_data=["Magnitude"],
                                 category_orders={"Color": ["0.0-2.9", "3.0-3.9", "4.0-4.9", "5.0-5.9", "6.0-6.9", "7.0-7.9", "8.0-8.9", "9.0<"]})
         
         
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-        fig.update_traces(marker=dict(size=7)) # Set marker size
+        fig.update_traces(marker=dict(size=10)) # Set marker size
         fig.update_layout(mapbox_center=dict(lat=center_lat, lon=center_lon))  # Center the map
         
         # Define magnitude ranges
-        magnitude_ranges = [(0, 2.9), (3.0, 3.9), (4.0, 4.9), (5.0, 5.9), (6.0, 6.9), (7.0, 7.9), (8.0, 8.9),(9.0,float('inf'))]
+        #magnitude_ranges = [(0, 2.9), (3.0, 3.9), (4.0, 4.9), (5.0, 5.9), (6.0, 6.9), (7.0, 7.9), (8.0, 8.9),(9.0,float('inf'))]
         
-        # Count earthquakes in each magnitude range
-        magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_mag) & (filtered_df['Magnitude'] < max_mag)].shape[0] for min_mag, max_mag in magnitude_ranges]
+        min_round = math.ceil(min_mag)
+        max_round = math.floor(max_mag)
+        magi=max_round-min_round
+
+        magnitude_ranges = []
+
+        current_mag = math.ceil(min_mag)  
+        next_mag = min(current_mag + 1, math.floor(max_mag))  
+        range_str = (min_mag, min_round)
+        if min_mag<min_round:
+            magnitude_ranges.append(range_str)
+
+        range_str = (current_mag, next_mag)  
+        magnitude_ranges.append(range_str)
+        print (magnitude_ranges)
+        while next_mag < math.floor(max_mag):  
+            current_mag = next_mag
+            next_mag = min(current_mag + 1, math.floor(max_mag))
+            range_str = (current_mag, next_mag)  
+            magnitude_ranges.append(range_str)
+
+        # Son aralığı ekleyelim
+        range_str = math.floor(max_mag), max_mag  
+        # range_str = (max_mag, max_round)
+        # if max_mag<=max_round:
+        #     magnitude_ranges.append(range_str)
+        magnitude_ranges.append(range_str)
+        print (magnitude_ranges)
+        magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_val) & (filtered_df['Magnitude'] <= max_val)].shape[0] for min_val, max_val in magnitude_ranges]
         
         # Create a DataFrame for plotting
         magnitude_df = pd.DataFrame({'Magnitude Range': ['{}-{}'.format(min_mag, max_mag) for min_mag, max_mag in magnitude_ranges], 'Count': magnitude_counts})
+
         
         # Plot the bar chart with plotly
         fig_bar = px.bar(magnitude_df, x='Magnitude Range', y='Count', text='Count', color='Count')
         fig_bar.update_traces(texttemplate='%{text}', textposition='outside')
         fig_bar.update_layout(xaxis_tickangle=-45)
         fig_bar.update_yaxes(type="log")
+        
+        #fig_bar.update_xaxes(range=[min_mag-1, max_mag+1])
         
         # Display the plots
         tab1.plotly_chart(fig)
@@ -139,4 +170,3 @@ with col2:
     # Plotting
     tab4.subheader("Chart")
     tab4.bar_chart(deprem_df.set_index('DateOnly'))
-    
