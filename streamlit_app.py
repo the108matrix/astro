@@ -129,7 +129,7 @@ with col2:
         #     magnitude_ranges.append(range_str)
         magnitude_ranges.append(range_str)
         print (magnitude_ranges)
-        magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_val) & (filtered_df['Magnitude'] <= max_val)].shape[0] for min_val, max_val in magnitude_ranges]
+        magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_val) & (filtered_df['Magnitude'] < max_val)].shape[0] for min_val, max_val in magnitude_ranges]
         
         # Create a DataFrame for plotting
         magnitude_df = pd.DataFrame({'Magnitude Range': ['{:.1f}-{:.1f}'.format(min_mag, max_mag) for min_mag, max_mag in magnitude_ranges], 'Count': magnitude_counts})
