@@ -136,7 +136,7 @@ with col2:
         # Plot the bar chart with plotly
         fig_bar = px.bar(magnitude_df, x='Magnitude Range', y='Count', text='Count', color='Count')
         fig_bar.update_traces(texttemplate='%{text}', textposition='outside')
-        fig_bar.update_layout(xaxis_tickangle=-45)
+        fig_bar.update_layout(xaxis_tickangle=0)
         fig_bar.update_yaxes(type="log")
         #fig_bar.update_xaxes(range=[min_mag-1, max_mag+1])
         # Display the plots
