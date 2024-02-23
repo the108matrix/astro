@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import math
 
-
 # Load data
 DATA_PATH = 'turkey_earthquakes.csv'
 
@@ -14,8 +13,7 @@ def load_data():
 df = load_data()
 
 # UI
-
-# Split the screen into two columns
+# Split the screen into four columns
 #col1, col15,col2 = st.columns([0.15,0.5, 0.6])
 col1, col15,col2 = st.columns([1,0.5,2])
 
@@ -32,9 +30,7 @@ with col1:
     start_date = st.date_input('Start date', min_date, min_value=min_date, max_value=max_date)
     end_date = st.date_input('End date', max_date, min_value=min_date, max_value=max_date)
     start_date = pd.to_datetime(start_date)
-    
     end_date = pd.to_datetime(end_date)
-
     
     # Magnitude range selection
     min_mag = st.number_input('Minimum Magnitude', min_value=0.0, max_value=10.0,value=5.0,step=0.1)
@@ -58,15 +54,10 @@ with col2:
     if st.checkbox('Show data'):
         st.dataframe(df)
 
-    # Show table checkbox
-    
-    
     # Show selected data checkbox
     tab1,tab2,tab3,tab4= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
-    #tab1,tab2,tab3,tab4,tab5= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart","Mag. Distribution"])
     # Earthquake Map
 
-    
     # Draw the map with color-coded circles based on Magnitude
     tab1.subheader("Earthquake Map")
 
@@ -100,8 +91,7 @@ with col2:
         # Create scatter mapbox plot
         fig = px.scatter_mapbox(filtered_df, lat="latitude", lon="longitude", color="Color", color_discrete_map=color_palette,
                                 size="Magnitude", zoom=4, height=400, width=600,hover_name="Date",hover_data=["Magnitude"],
-                                category_orders={"Color": ["0.0-2.9", "3.0-3.9", "4.0-4.9", "5.0-5.9", "6.0-6.9", "7.0-7.9", "8.0-8.9", "9.0<"]})
-        
+                                category_orders={"Color": ["0.0-2.9", "3.0-3.9", "4.0-4.9", "5.0-5.9", "6.0-6.9", "7.0-7.9", "8.0-8.9", "9.0<"]})        
         
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
@@ -144,15 +134,12 @@ with col2:
         # Create a DataFrame for plotting
         magnitude_df = pd.DataFrame({'Magnitude Range': ['{}-{}'.format(min_mag, max_mag) for min_mag, max_mag in magnitude_ranges], 'Count': magnitude_counts})
 
-        
         # Plot the bar chart with plotly
         fig_bar = px.bar(magnitude_df, x='Magnitude Range', y='Count', text='Count', color='Count')
         fig_bar.update_traces(texttemplate='%{text}', textposition='outside')
         fig_bar.update_layout(xaxis_tickangle=-45)
         fig_bar.update_yaxes(type="log")
-        
         #fig_bar.update_xaxes(range=[min_mag-1, max_mag+1])
-        
         # Display the plots
         tab1.plotly_chart(fig)
         tab1.plotly_chart(fig_bar)
@@ -162,7 +149,6 @@ with col2:
             
     tab2.subheader("Number of Earthquake")
     tab2.write(deprem_df)
-
     
     tab3.subheader("Filtered Data")
     tab3.write(filtered_df)
