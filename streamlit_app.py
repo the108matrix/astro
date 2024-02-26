@@ -13,7 +13,7 @@ def load_data():
 df = load_data()
 
 # UI
-# Split the screen into 3 columns
+# Split the screen into four columns
 col1, col15,col2 = st.columns([1,0.5,2])
 
 # Parameters in the left column
@@ -97,33 +97,43 @@ with col2:
         #magnitude_ranges = [(0, 2.9), (3.0, 3.9), (4.0, 4.9), (5.0, 5.9), (6.0, 6.9), (7.0, 7.9), (8.0, 8.9),(9.0,float('inf'))]
         
         min_round = math.ceil(min_mag)
+        
         max_round = math.floor(max_mag)
-
-
+        print(min_round,max_round)
+        
         magnitude_ranges = []
-
-        current_mag = math.ceil(min_mag)  
-        next_mag = min(current_mag + 1, math.floor(max_mag))  
-        #inserting first mag range
-        range_str = (min_mag, min_round)
-        if min_mag<min_round:
+        
+        
+        if min_round >= max_round+1 or max_mag<min_round:
+            
+            range_str = (min_mag, max_mag)
             magnitude_ranges.append(range_str)
+        else:
+                
+            
 
-        range_str = (current_mag, next_mag)  
-        magnitude_ranges.append(range_str)
-        print (magnitude_ranges)
-        while next_mag < math.floor(max_mag):  
-            current_mag = next_mag
-            next_mag = min(current_mag + 1, math.floor(max_mag))
+            current_mag = math.ceil(min_mag)  
+            next_mag = min(current_mag + 1, math.floor(max_mag))  
+            #inserting first mag range
+            range_str = (min_mag, min_round)
+            if min_mag<min_round:
+                magnitude_ranges.append(range_str)
+
             range_str = (current_mag, next_mag)  
             magnitude_ranges.append(range_str)
+            print (magnitude_ranges)
+            while next_mag < math.floor(max_mag):  
+                current_mag = next_mag
+                next_mag = min(current_mag + 1, math.floor(max_mag))
+                range_str = (current_mag, next_mag)  
+                magnitude_ranges.append(range_str)
 
-        #inserting last mag range
-        range_str = math.floor(max_mag), max_mag  
-        # range_str = (max_mag, max_round)
-        # if max_mag<=max_round:
-        #     magnitude_ranges.append(range_str)
-        magnitude_ranges.append(range_str)
+            #inserting last mag range
+            range_str = math.floor(max_mag), max_mag  
+            # range_str = (max_mag, max_round)
+            # if max_mag<=max_round:
+            #     magnitude_ranges.append(range_str)
+            magnitude_ranges.append(range_str)
         print (magnitude_ranges)
         magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_val) & (filtered_df['Magnitude'] < max_val)].shape[0] for min_val, max_val in magnitude_ranges]
         
