@@ -13,7 +13,7 @@ def load_data():
 df = load_data()
 
 # UI
-# Split the screen into four columns
+# Split the screen into 3 columns
 col1, col15,col2 = st.columns([1,0.5,2])
 
 # Parameters in the left column
