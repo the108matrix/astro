@@ -14,7 +14,6 @@ df = load_data()
 
 # UI
 # Split the screen into four columns
-#col1, col15,col2 = st.columns([0.15,0.5, 0.6])
 col1, col15,col2 = st.columns([1,0.5,2])
 
 # Parameters in the left column
@@ -55,9 +54,8 @@ with col2:
 
     # Show selected data checkbox
     tab1,tab2,tab3,tab4= st.tabs(["Map","🗃 Num.of EQs","🗃 Filtered Data","📈 Chart"])
-    # Earthquake Map
 
-    # Draw the map with color-coded circles based on Magnitude
+    # Draw the Earthquake map with color-coded circles based on Magnitude
     tab1.subheader("Earthquake Map")
 
     # Draw the map with color-coded circles based on Magnitude
@@ -65,13 +63,11 @@ with col2:
     # Calculate the center of the map based on filtered data
         center_lat = filtered_df['latitude'].mean()
         center_lon = filtered_df['longitude'].mean()
-        
         # Define magnitude ranges
         magnitude_ranges = [(0, 2.9), (3.0, 3.9), (4.0, 4.9), (5.0, 5.9), (6.0, 6.9), (7.0, 7.9), (8.0, 8.9),(9.0,float('inf'))]
-        
         # Set colors for each magnitude range
         colors = ["yellow", "lightgreen", "blue", "orange", "red", "purple", "brown", "black"]
-        mag_labels =["0.0-2.9", "3.0-4.9", "4.0-4.9", "5.0-5.9", "6.0-6.9", "7.0-7.9", "8.0-8.9","9.0<"]
+        mag_labels =["0.0-2.9", "3.0-3.9", "4.0-4.9", "5.0-5.9", "6.0-6.9", "7.0-7.9", "8.0-8.9","9.0<"]
         
         # Create a column to store color information based on Magnitude ranges
         filtered_df['Color'] = pd.cut(filtered_df['Magnitude'], bins=[range[0] for range in magnitude_ranges] + [float('inf')], labels=mag_labels, right=False)
