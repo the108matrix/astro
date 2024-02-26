@@ -104,7 +104,7 @@ with col2:
 
         current_mag = math.ceil(min_mag)  
         next_mag = min(current_mag + 1, math.floor(max_mag))  
-        #inserting first range
+        #inserting first mag range
         range_str = (min_mag, min_round)
         if min_mag<min_round:
             magnitude_ranges.append(range_str)
@@ -118,7 +118,7 @@ with col2:
             range_str = (current_mag, next_mag)  
             magnitude_ranges.append(range_str)
 
-        #inserting last range
+        #inserting last mag range
         range_str = math.floor(max_mag), max_mag  
         # range_str = (max_mag, max_round)
         # if max_mag<=max_round:
