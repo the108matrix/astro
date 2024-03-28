@@ -15,7 +15,7 @@ import time
 df = pd.DataFrame()
 
 
-st.title('CSE Calcul ASC 2023')
+st.title('CSE Calcul ASC 2024')
 st.write('')
 
 # add some space between photo and instructions
@@ -34,7 +34,7 @@ placeholder_s = st.empty()
 
 # have user input the amount they have for each coin
 
-userRFF = placeholder_c.number_input('Revenu fiscal de reference 2023 (sur les revenus 2022) en euros: ', min_value= 0, value=100000)
+userRFF = placeholder_c.number_input('Revenu fiscal de reference 2024 (sur les revenus 2023) en euros: ', min_value= 0, value=100000)
 userNBPart = placeholder_s.number_input('Nombre de parts ', min_value= 1.,format="%.2f", step=0.5)
 
 
@@ -55,18 +55,18 @@ st.write(f'Votre Quotient Familial {QF:,d} .')
 
 st.write('')
 
-if QF > 2200:
-    st.subheader('Vous avez l\'enveloppe standard de 183 euros.')
+if QF > 2300:
+    st.subheader('Vous avez l\'enveloppe standard de 193 euros.')
     st.write('Pas besoin de venir nous voir :) ')
-elif 1700 < QF <= 2200 :
+elif 1800 < QF <= 2300 :
     st.subheader('Vous avez une enveloppe de 250 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
-elif 1200 < QF <= 1700:
+elif 1300 < QF <= 1800:
     st.subheader('Vous avez une enveloppe de 350 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
-elif QF <= 1200:
+elif QF <= 1300:
     st.subheader('Vous avez une enveloppe de 450 euros.')
     st.write('Vous pouvez venir nous voir!! :) ')
     st.write('Nous avons besoin de votre avis d\'imposition pour valider cette enveloppe. ')
