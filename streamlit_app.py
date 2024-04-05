@@ -13,8 +13,8 @@ st.divider()
 
 st.header("Here is all of the available practice tests located below.")
 
-with st.expander("Full TSA Practice Test, expanded=False):
-                 st.write("Place Holder")
+with st.expander("Full TSA Practice Test", expanded=False):
+  st.write("Place Holder")
                  
 
             
