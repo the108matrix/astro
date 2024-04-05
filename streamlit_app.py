@@ -6,7 +6,7 @@ import smtplib
 
 
 st.title('SHS Computer Science Site')
-st.header('This brand new site, coded in Python with hosting/library provided by _Streamlit.io_, is for all things Computer Science within Sahuarita High School, this website will provide resources for things such as the CS TSA Test.')
+st.text('This brand new site, coded in Python with hosting/library provided by _Streamlit.io_, is for all things Computer Science within Sahuarita High School, this website will provide resources for things such as the CS TSA Test.')
 #st.image('shslogo.png', caption='Sahuarita High School Mustang', width=600)
 
 st.divider()
