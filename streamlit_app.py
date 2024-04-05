@@ -11,9 +11,14 @@ st.write('This brand new site, coded in Python with hosting/library provided by 
 
 st.divider()
 
-suggestions = st.text_input('Have any suggestions? Feedback such as bugs or even suggestions can help make the site better!')
+st.header("Here is all of the available practice tests located below.")
 
-st.write(suggestions)
+with st.expander("Full TSA Practice Test, expanded=False):
+                 st.write("Place Holder")
+                 
+
+            
+st.header("And here, is all of the available resources located below.")
 
 st.divider()
 
