@@ -14,7 +14,7 @@ st.divider()
 st.header("Here is all of the available practice tests located below.")
 
 with st.expander("Full TSA Practice Test", expanded=False):
-  st.page_link("pages/nccp.py", label="NUMBER CONVERSION PRACTICE PROGRAM", icon="1️⃣")
+  st.page_link("pages/ncpp.py", label="NUMBER CONVERSION PRACTICE PROGRAM")
 
                  
 
