@@ -2,39 +2,25 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+import smtplib
 
-"""
-# Welcome to Streamlit!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+st.title('SHS Computer Science Site')
+st.write('This brand new site, coded in Python with hosting/library provided by _Streamlit.io_, is for all things Computer Science within Sahuarita High School, this website will provide resources for things such as the CS TSA Test.')
+#st.image('shslogo.png', caption='Sahuarita High School Mustang', width=600)
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+st.divider()
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+st.header("Here is all of the available practice tests located below.")
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+with st.expander("Full TSA Practice Test", expanded=False):
+  st.page_link("pages/ncpp.py", label="NUMBER CONVERSION PRACTICE PROGRAM", icon="1️⃣")
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+                 
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
+            
+st.header("And here, is all of the available resources located below.")
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+st.divider()
+
+st.write("This site is currently under construction, so please be patient with the site. Due to the limitations of the platform of the previous site, I have decided that it would be best to start fresh. I will be adding more features to the site as time goes on. Thank you.")

@@ -1,6 +1,3 @@
-# Welcome to Streamlit!
+# Welcome to my website; **The SHS Computer Science Site.**
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+This website is NOT affilated with SUSD in any way, and is actually student made for the Computer Science Program to help educate other students. :suspect:
