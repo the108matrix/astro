@@ -1,26 +1,20 @@
-import altair as alt
-import numpy as np
-import pandas as pd
-import streamlit as st
-import smtplib
-
 """
 Number Conversion Practice
 """
 import random
 
-st.write("'##::: ##:::::::'######:::::::'########:::::::'########::")
-st.write(" ###:: ##::::::'##... ##:::::: ##.... ##:::::: ##.... ##:")
-st.write(" ####: ##:::::: ##:::..::::::: ##:::: ##:::::: ##:::: ##:")
-st.write(" ## ## ##:::::: ##:::::::::::: ########::::::: ########::")
-st.write(" ##. ####:::::: ##:::::::::::: ##.....:::::::: ##.....:::")
-st.write(" ##:. ###:'###: ##::: ##:'###: ##::::::::'###: ##::::::::")
-st.write(" ##::. ##: ###:. ######:: ###: ##:::::::: ###: ##::::::::")
-st.write()
-st.write()
-st.write("Welcome to the NUMBER CONVERSION PRACTICE PROGRAM.")
-st.write("To get started, st.text_input what you like to practice below.")
-st.write()
+print("'##::: ##:::::::'######:::::::'########:::::::'########::")
+print(" ###:: ##::::::'##... ##:::::: ##.... ##:::::: ##.... ##:")
+print(" ####: ##:::::: ##:::..::::::: ##:::: ##:::::: ##:::: ##:")
+print(" ## ## ##:::::: ##:::::::::::: ########::::::: ########::")
+print(" ##. ####:::::: ##:::::::::::: ##.....:::::::: ##.....:::")
+print(" ##:. ###:'###: ##::: ##:'###: ##::::::::'###: ##::::::::")
+print(" ##::. ##: ###:. ######:: ###: ##:::::::: ###: ##::::::::")
+print()
+print()
+print("Welcome to the NUMBER CONVERSION PRACTICE PROGRAM.")
+print("To get started, input what you like to practice below.")
+print()
 
 
 numbersystem = ["binary", "hexadecimal", "decimal", "octal"]
@@ -28,19 +22,19 @@ numbersystem = ["binary", "hexadecimal", "decimal", "octal"]
 selecting = True
 
 while selecting:
-    first = st.text_input("What Number System you'd like to convert? ")
+    first = input("What Number System you'd like to convert? ")
     
-    second = st.text_input("What would you like to convert it to? ")
+    second = input("What would you like to convert it to? ")
     
     if first == "binary" or first == "hexadecimal" or first == "decimal" or first == "octal" or second == "binary" or second == "hexadecimal" or second == "decimal" or second == "octal":
-        st.write()
-        st.write()
-        st.write()
-        st.write("Okay, let's practice converting", first, "to", second + ".")
-        st.write("Press 'Run' above if you want to reset the program and pick another number conversion")
+        print()
+        print()
+        print()
+        print("Okay, let's practice converting", first, "to", second + ".")
+        print("Press 'Run' above if you want to reset the program and pick another number conversion")
         break
     else:
-        st.write("Not a valid st.text_input. Try again.")
+        print("Not a valid input. Try again.")
         continue
 
 a = []
@@ -58,10 +52,10 @@ while running:
     
     if first == "binary":
         number = (str(bin(number))[2:])
-        st.write("Convert", number, "to", second + ".")
-        st.write()
-        st.write()
-        response = int(st.text_input("Answer: "))
+        print("Convert", number, "to", second + ".")
+        print()
+        print()
+        response = int(input("Answer: "))
         
         
         
@@ -78,10 +72,10 @@ while running:
 
     if first == "decimal":
         number = str(number)
-        st.write("Convert", number, "to", second + ".")
-        st.write()
-        st.write()
-        response = int(st.text_input("Answer: "))
+        print("Convert", number, "to", second + ".")
+        print()
+        print()
+        response = int(input("Answer: "))
         
         
         
@@ -98,10 +92,10 @@ while running:
     
     if first == "hexadecimal":
         number = (str(hex(number))[2:])
-        st.write("Convert", number, "to", second + ".")
-        st.write()
-        st.write()
-        response = int(st.text_input("Answer: "))
+        print("Convert", number, "to", second + ".")
+        print()
+        print()
+        response = int(input("Answer: "))
         
         
         
@@ -118,10 +112,10 @@ while running:
     
     if first == "octal":
         number = (str(oct(number))[1:])
-        st.write("Convert", number, "to", second + ".")
-        st.write()
-        st.write()
-        response = int(st.text_input("Answer: "))
+        print("Convert", number, "to", second + ".")
+        print()
+        print()
+        response = int(input("Answer: "))
         
         
         
@@ -137,12 +131,14 @@ while running:
 
   
     if response == int(answer):
-        st.write("Correct!")
-        st.write()
-        st.write()
+        print("Correct!")
+        print()
+        print()
     else:
-        st.write("Wrong!")
-        st.write()
-        st.write()
+        print("Wrong!")
+        print()
+        print()
 
-        
+
+    
+    
