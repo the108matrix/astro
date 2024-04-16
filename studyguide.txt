@@ -1,0 +1,1081 @@
+@
+@
+Which of these is NOT true about Big O notation?
+1. The letter O is used because the growth rate of a function is also referred to as order of the function.
+2. It is used to classify algorithms according to how their running time or space requirements grow as the input size grows.
+3. In mathematics, it is commonly used to describe how closely a finite series approximates a given function.
+4. A description of a function in terms of big O notation usually provides the most accurate value of the function.
+[
+4
+@
+What is a function in computer programming?
+1. a mathematical operation in a computer
+2. the transfer of data from one component to another in the computer
+3. the lowest level machine code in a computer
+4. a named set of instructions that can be reused in a program to reduce complexity
+[
+4
+@
+Which data structure is used to store a large number of names?
+1. character string
+2. Boolean
+3. integer
+4. List
+[
+4
+@
+Which data type will you most likely use for performing division (such as y = a / b)?
+1. integer
+2. Boolean
+3. floating point
+4. character
+[
+3
+@
+Which of these is likely NOT in a programming language's standard function library?
+1. myFunc47()
+2. print()
+3. random()
+4. time()
+[
+1
+@
+Which of the following is a good reason constant variables defined in programs?
+1. some algorithms use fixed values like pi and other parameters
+2. some algorithms use character strings to solve problems
+3. some algorithms use large numbers and small numbers in calculations
+4. some algorithms approximate values in calculations
+[
+1
+@
+Why is it important to initialize variables?
+1. You want all your variables to start with a value of 0 (zero) so you can add things to them later.
+2. You don't want to think about what value each variable needs to start out with.
+3. Depending on the machine or compiler you are using, you cannot assume the value a variable contains without initializing it.
+4. You need to decide on the type of data you are using but not the initial value.
+[
+3
+@
+In programming, what is an expression that evaluates to true or false?
+   1. boolean expression
+   2. bernoulli distribution
+   3. conditional statement
+   4. conditional logics
+[
+1
+@
+Which of the following is an example of a string?
+   5. My Name Is
+   6. "My Name Is"
+   7. "My""Name""Is"
+   8. $My Name Is$
+[
+2
+@
+What terminates a string when writing a program?
+   1. boolean expression
+   2. semicolon
+   3. null character
+   4. parenthesis
+[
+3
+@
+What is the correct format to concatenate and number and a string in Java?
+   1. "your number is" + theNumber
+   2. "your number is" + "theNumber"
+   3. your number is + theNumber
+   4. "your number is theNumber"
+[
+1
+@
+What is the value of Str2 in the following code:  Var Str1 = "Computer Science"; var str2=Str1.substring(2,13); ?
+   1. Str2 = "omputer Scie"
+   2. Str2 = "omputer Sci"
+   3. Str2 = "mputer Sci"
+   4. Str2 = "mputer Scie"
+[
+3
+@
+Which of the following is an example of a low-level language?
+   1. FORTRAN
+   2. C++
+   3. Binary Machine Language
+   4. JAVA
+[
+3
+@
+What is the purpose of using hexadecimal numbering in computer science?
+1. it is a convenient way to express numbers more efficiently than binary or decimal
+2. it is easier to do math calculations in hexadecimal
+3. hexadecimal is the base number system used in computer hardware
+4. because base-6 numbers are easier to use than other bases
+[
+1
+@
+What is the largest decimal number an eight-bit byte can represent?
+1. 255
+2. 256
+3. 512
+4. 1024
+[
+1
+@
+If A and B are both true, which of these logical statements is true?
+1. A and not(B)
+2. A and B
+3. not (A and B)
+4. B and not(A)
+[
+2
+@
+If A is true and B is false, which of these logical statements is false?
+1. A or B
+2. A and B
+3. A and not(B)
+4. not(B)
+[
+2
+@
+What is the hexadecimal number 0xAEF in decimal?
+1. 2783
+2. 2798
+3. 2799
+4. 3055
+[
+3
+@
+What is the hexadecimal number 0x001001 in decimal?
+1. 9
+2. 512
+3. 4096
+4. 4097
+[
+4
+@
+What is binary 001001 in hexadecimal?
+1. 9
+2. 4097
+3. 512
+4. 256
+[
+1
+@
+What is binary 1001001 in hexadecimal?
+1. 50
+2. 49
+3. 48
+4. 24
+[
+2
+@
+What is hexadecimal number 0x231A in binary?
+1. 0010 0011 0001 1010
+2. 0010 0011 0001 1111
+3. 1010 0011 0001 1010
+4. 0010 1011 1001 1010
+[
+1
+@
+What would the operation 8 modulo 3 (8 % 3) return as a value?
+1. 2
+2. 6
+3. 9
+4. 24
+[
+1
+@
+Which of these statements produces the value 5 (five)?
+1.  (3 - 2 * (4 - 7) + (3 - (3 * 1/3) + 1)
+2. (3 - (2 * 4 - 7) + (3 - (3 * (1/3 + 1))
+3. 3 - 2 * 4 - 7 + 3 - 3 * 1/3 + 1
+4. (3 - (2 * 4 - 7) + (3 - (3 * 1/3) + 1)
+[
+4
+@
+Which of these statements is used to decrement a variable "countdown"?
+1. countdown = countdown – 1
+2. countdown = countdown + 1
+3. countdown = countdown * 1
+4. countdown = countdown – countdown
+[
+1
+@
+How many bits would you need if you wanted to have the ability to count up to 1000?
+   1. 8
+   2. 10
+   3. 12
+   4. 14
+[
+2
+@
+What is the decimal number 13 as a binary number?
+   1. 1011
+   2. 0111
+   3. 0101
+   4. 1101
+[
+4
+@
+How many unique IP addresses could be made using a 6-bit fixed-length address system?
+   1. 64
+   2. 256
+   3. 32
+   4. 128
+[
+1
+@
+What is the best explanation for why digital data is represented in binary form?
+      1. it's easier, cheaper and more reliable
+      2. it's the only system with flexibility to represent data other than numbers
+      3. it's typically smaller than other numbering systems
+      4. it's impossible to build a computer that doesn't use binary
+[
+1
+@
+Which of the following lists numbers in the order from least to greatest?
+         1. 010000; 1110; 01010
+         2. 01010; 010000; 1110
+         3. 01010; 1110; 010000
+         4. 1110; 01010; 010000
+[
+3
+@
+What data type is used for fractional numbers?
+         1. integer
+         2. float
+         3. Def
+         4. Fract
+[
+2
+@
+Which of these sets of values of the variable x will each cause "if (x > 3.2) " to return the Boolean value "false"?
+         1. -3.3, 3.3, -1.0, 1.0, 0.0, 0.5, 3.1
+         2. -3.3, 3.0, -1.0, 1.0, 0.0, 0.5, 3.1
+         3. -3.0, 3.0, -1.0, 1.0, 0.0, 0.5, 3.7
+         4. -3.0, 3.0, -10, 10, 0.0, 0.5, 3.1
+[
+2
+@
+Given x = 5, what does "(x > 3 OR x < 10)" evaluate to?
+         1. Boolean "true"
+         2. Boolean "false"
+         3. Integer "0"
+         4. Character "yes"
+[
+1
+@
+If A is true and B is true, which of these logical statements is false?
+         1. A OR B
+         2. A AND B
+         3. not(A) XOR B
+         4. A XOR B
+[
+4
+@
+If var age = 22, which of the following will evaluate as TRUE?
+         1. (age>20) && (age<25)
+         2. (age !=12)&&(age>25)
+         3. (age=22)&&(age<18)
+         4. (age>20)&&(age!=22)
+[
+1
+@
+Which term would you use to perform a product of a maxterm boolean function?
+         1. NOT terms
+         2. NAND terms
+         3. OR terms
+         4. AND terms
+[
+3
+@
+The following rules are an example of what formal math law on Boolean expressions:  not (A or B) = not A and not B; and not(A and B) = not A or not B?
+         1. DE Morgan's Law
+         2. Moore's Law
+         3. Brook's Law
+         4. Godwin's Law
+[
+1
+@
+Which of the following is another name for indenting?
+         1. nesting
+         2. contracting
+         3. aligning
+         4. assigning
+[
+1
+@
+What are nesting statements?
+         1. a theme that repeats
+         2. break up a hard problem into smaller parts
+         3. a statement inside another statement
+         4. a list of steps used to complete a task
+[
+3
+@
+Which of these programming constructs repeats an action for a number (usually fixed) of steps?
+         1. a "for" loop
+         2. a "while" loop
+         3. an "if" conditional
+         4. a "print" statement
+[
+1
+@
+Which of these programming constructs repeats an action while a condition is true?
+         1. a "while" loop
+         2. a "for" loop
+         3. an "if" conditional
+         4. a "print" statement
+[
+1
+@
+Given x = 10 when the loop starts, which of these assignment statements inside of a "while" loop (while ( x < 0)) will cause the loop to end?
+         1. x = x + 1
+         2. x = 0
+         3. x = 1e100
+         4. x = -1
+[
+4
+@
+I want to write code for a bank that asks a user whether he/she wants to make a withdrawal, make a deposit, or quit.  What type of loop would be best to use to ensure the user is able to do as many transactions as they want?
+         1. an infinite loop
+         2. a for loop
+         3. a while loop
+         4. a do-while loop
+[
+4
+@
+What type of loop is programmed to occur a specific number of times?
+         1. for loop
+         2. while loop
+         3. if statement
+         4. do while loop
+[
+1
+@
+I want to write code for a bank that asks a user whether he/she wants to make a withdrawal, make a deposit, or quit.  What type of loop would be best to use to ensure the user is able to do as many transactions as they want?
+         1. an infinite loop
+         2. a for loop
+         3. a while loop
+         4. a do-while loop
+[
+4
+@
+What type of loop is programmed to occur a specific number of times?
+         1. for loop
+         2. while loop
+         3. if statement
+         4. do while loop
+[
+1
+@
+In JavaScript, an array of 10 items would have which of the following indexes?
+         1. 0 – 9
+         2. 1 – 9
+         3. 1 – 10
+         4. 0 – 10
+[
+1
+@
+How many lines of output are printed out for: for(int x=0; x<=10; x++) System.out.println(x);  ?
+         1. 0
+         2. 5
+         3. 10
+         4. 11
+[
+4
+@
+When do you get OUT of this loop:  while(x!=1) {//stuff happens}?
+         1. when x=1
+         2. never
+         3. when x > 1
+         4. when x <> 0
+[
+1
+@
+A while loop is a control flow statement that allows code to be executed repeatedly base on what?
+         1. a binary number
+         2. a Boolean condition
+         3. a string of characters
+         4. a given value
+[
+2
+@
+Which of the following is an exit condition loop?
+         1. while loop
+         2. for Loop
+         3. if - then – else
+         4. do while loop
+[
+4
+@
+What is the value of var int var=0; int array⟦4]; for(int j=0; j<=4; j++) { var=var+1;}?
+         1. 4
+         2. 5
+         3. 8
+         4. 10
+[
+2
+@
+Which command will stop an infinite loop?
+         1. Esc
+         2. Shift C
+         3. Alt C
+         4. Cntrl C
+[
+4
+@
+What is a loop that never ends called?
+         1. infinite loop
+         2. recursive loop
+         3. for loop
+         4. while loop
+[
+1
+@
+Which of these statements is NOT true about hash maps?
+         1. It is not an ordered collection
+         2. it does not return the keys and values in the same order in which they have been inserted
+         3. inputs are ordered by an index value
+         4. it does not guarantee any particular order of the map
+[
+3
+@
+Which of these is NOT true about the Bubble sort algorithm?
+         1. Although the algorithm is simple, it is very fast and ideal for most problems.
+         2. It is a simple sorting algorithm that repeatedly steps through the list to be sorted.
+         3. It compares each pair of adjacent items and swaps them if they are in the wrong order.
+         4. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
+[
+1
+@
+Which of these is NOT true of the binary search algorithm?
+         1. Input data needs to be sorted.
+         2. The number of search operations grows more slowly than the list does, because you're halving the "search space" with each operation.
+         3. It accesses data in a list sequentially.
+         4. It requires an ordering comparison, not equality comparison.
+[
+3
+@
+What numbers will be outputted with the following code; var myArray=⟦5,5,6,7,3,4]; console.log(myArray⟦3]); console.log(myArray⟦5]);?
+         1. 3 and 5
+         2. 6 and 3
+         3. 6 and 4
+         4. 7 and 4
+[
+4
+@
+What would be the best data structure for a library if the data is in the form of a title and a number of copies of the title?
+         1. Hash map
+         2. Static values
+         3. ArrayList
+         4. Array
+[
+1
+@
+Given the following initialized array:  int fourth; int⟦]⟦] myArray={{1,2,3},{4,5,6},{7,8,9}}; Using myArray, how can I store in variable "fourth" the number 4?
+         1. fourth = myArray⟦2]⟦1];
+         2. fourth = myArray⟦0]⟦1];
+         3. fourth = myArray⟦1]⟦0];
+         4. fourth = myArray⟦1]⟦1];
+[
+3
+@
+Which of these is a disadvantage of using third party libraries?
+         1. using libraries often saves development time
+         2. code which has already been used by thousands of people will have fewer errors
+         3. the code from the library may be untested or unreliable
+         4. there are not enough third-party libraries available and many only have a few bits of code in them
+[
+3
+@
+What is a software repository?
+         1. a storage location from which software packages may be retrieved and installed on a computer
+         2. a memory device that is used to offload data from a personal computer
+         3. a secure location where a company stores its orginal software copies
+         4. a place where software companies keep their money from the sale of software
+[
+1
+@
+What does it mean to do a "pull" on a software repository?
+         1. diverge from the main line of development and continue to do work without messing with that main line
+         2. update your copy of repository with the version on remote server
+         3. create a new branch of software, forking the branch you are currently on
+         4. put changes you have made on your local branch to a remote repository
+[
+2
+@
+When you have finished making changes to your software on your local computer, how do you get it back into the software repository?
+         1. you do a pull from the server
+         2. you do a branch on the server
+         3. you do a push onto the server
+         4. you do an add on the server
+[
+3
+@
+What does the term "upstream" refer to in software control?
+         1. you send software changes "upstream" to the repository so that everyone pulling from the same source is working with all the same changes
+         2. you are "upstream" from a server when you are downloading large amounts of data at a high data rate
+         3. you are "upstream" whenever you copy (clone, checkout, etc.) from a repository
+         4. you send software changes to a coworker "upstream" by giving them a hardware storage version
+[
+1
+@
+What is TRUE of version control systems?
+         1. stand-alone application
+         2. changes identified by a number or letter code
+         3. allows users to compare previous versions of a document
+         4. critical to track other's edits and correct mistakes
+[
+1
+@
+What is the template of an object called?
+         1. class
+         2. stencil
+         3. object template
+         4. method
+[
+1
+@
+Subclass is what type of hierarchy to the existing class?
+         1. disjoint hierarchy
+         2. jointless hierarchy
+         3. specialization hierarchy
+         4. generalization hierarchy
+[
+3
+@
+What is the relationship between the class Car and the class TwoDoor in the code snippet shown?  class TwoDoor extends Car { }
+         1. Car implements TwoDoor
+         2. TwoDoor implements Car
+         3. TwoDoor is the super class to Car
+         4. Car is the super class to TwoDoor
+[
+4
+@
+Which of these are NOT a benefit of following a sequential design process?
+         1. Time spent early in the software production cycle can reduce costs at later stages.
+         2. It places emphasis on documentation, such as requirements documents and design documents, as well as source code.
+         3. Clients may not know exactly what their requirements are before they see working software and so change their requirements, leading to redesign.
+         4. It provides a structured approach, progresses linearly through discrete, easily understandable and explainable phases and thus is easy to understand.
+[
+3
+@
+How can an efficient algorithm design reduce power consumption?
+         1. Algorithms that use fewer CPU cycles reduce demand on the processor.
+         2. Algorithms that find the answer with the most precision reduce power.
+         3. Algorithms that interact with the user more frequently are used more often.
+         4. The higher the level of the coding language used, the more efficient the algorithm.
+[
+1
+@
+Which of these describes the imperative programming paradigm?
+         1. programming by specifying the result you want, not how to get it
+         2. programming with an explicit sequence of commands that update state
+         3. programming with clean, go to-free, nested control structures
+         4. programming with function calls that avoid any global state
+[
+2
+@
+Which of these describes the declarative programming paradigm?
+         1. programming by specifying the result you want, not how to get it
+         2. programming with an explicit sequence of commands that update state
+         3. programming with clean, go to-free, nested control structures
+         4. programming with function calls that avoid any global state
+[
+1
+@
+Which of these describes the structured programming paradigm?
+         1. programming by specifying the result you want, not how to get it
+         2. programming with an explicit sequence of commands that update state
+         3. programming with clean, go to-free, nested control structures
+         4. programming with function calls that avoid any global state
+[
+3
+@
+Which of these describes the functional programming paradigm?
+         1. programming with clean, go to-free, nested control structures
+         2. programming by specifying the result you want, not how to get it
+         3. programming with an explicit sequence of commands that update state
+         4. programming with function calls that avoid any global state
+[
+4
+@
+Which of these describes the object-oriented programming paradigm?
+         1. programming with clean, go to-free, nested control structures
+         2. programming by specifying the result you want, not how to get it
+         3. programming by defining objects that send messages to each other
+         4. programming with an explicit sequence of commands that update state
+[
+3
+@
+Which of these is NOT a feature of a good algorithm?
+         1. it gives specific and precise instructions
+         2. it uses math
+         3. it uses everyday language and jargon
+         4. it uses sequential steps
+[
+3
+@
+What is a list of subroutine definitions, communication protocols, and tools for building software called?
+         1. Dictionary
+         2. Application programming interface (API)
+         3. Coding Glossary
+         4. Technical Guidelines
+[
+2
+@
+What is machine code?
+         1. any programming language used by a machine
+         2. the password a user inputs to a machine to gain access to it
+         3. the binary data used as the most basic instructions for the CPU in
+[
+3
+@
+Which of these is NOT a feature of a good text editor for coding?
+         1. outputs formatted.docx files
+         2. easy to use and navigate
+         3. syntax highlighting
+         4. outputs plain text files
+[
+1
+@
+Which of these is NOT a feature of a good text editor for coding?
+         1. outputs formatted.docx files
+         2. easy to use and navigate
+         3. syntax highlighting
+         4. outputs plain text files
+[
+1
+@
+What is a compiler?
+         1. a translator from "high-level" language programs into programs in a lower-level language
+         2. a translator from high-level language programs into programs in a different high-level language
+         3. a translator from assembly language programs to machine language programs
+         4. a translator whose input is a program and some input data; it executes the program using the input data
+[
+1
+@
+What is interpreted code?
+         1. A code file is translated into machine code before it is executed.  This machine code is stored in a separate executable file that can be run later.
+         2. Each line of code is translated into the home language of the user, so that commands such as if, for, print, etc. are in the correct language.
+         3. Each line of code is translated into machine code (1's and 0's) and executed using any input data given. This process is repeated for each line of code in the program.
+         4. Each line of code is reviewed by an engineer for errors.  Once the code has been corrected it is referred to as "interpreted."
+[
+3
+@
+Which of the following will be created using the following lines of code?  var num=5; var str="HOWDY"; var greet = num + str; console.log(greet);?
+         1. 5 HOWDY
+         2. HOWDY HOWDY HOWDY HOWDY HOWDY
+         3. 5HOWDY
+         4. type mismatch error
+[
+3
+@
+Which of the following JavaScript statements will display the output on two lines?
+         1. console.log("Hi!\nMy Name Is");
+         2. console.log("Hi!\newLineMy Name Is");
+         3. console.log("Hi!\moveMy Name Is");
+         4. console.log("Hi!\newMy Name Is");
+[
+1
+@
+What is a programming language model organized around objects rather than actions called?
+            1. SOP Language
+            2. OOP Language
+            3. Binary Machine Model
+            4. SaaS
+[
+2
+@
+Which of the following is NOT true for comments in Java?
+            1. comments are helpful to other users
+            2. indent comments to line up with code
+            3. write comments after you write and test your program
+            4. keep comments relevant
+[
+3
+@
+Which of the following is NOT a true statement about functions?
+            1. Functions reduce the complexity of programs.
+            2. Functions cannot make calls to other functions written by the same programmer.
+            3. Functions are reusable programming abstractions.
+            4. Functions help break a problem into logical chunks.
+[
+2
+@
+The following code performs what task?  function turnAround() {turnLeft();turnLeft();}moveForward();moveForward();
+            1. moves turtle forward two spaces
+            2. turtle turns left twice and moves forward two spaces
+            3. turtle turns left; moves forward 1 space; turns left; moves forward 1 space
+            4. nothing the function is never called
+[
+1
+@
+What is a parameter?
+            1. a collection of commands than can be used in a programming language
+            2. another name for the purpose of a function
+            3. a way to give input to a function that controls how the function runs
+            4. a named memory location
+[
+3
+@
+How many parameters does the command "moveTo(x,y)" have?
+            1. 0
+            2. 1
+            3. 2
+            4. 3
+[
+3
+@
+Which of these are NOT describing a well-defined test procedure?
+            1. use alpha characters or decimal numbers instead of integers as input and note output
+            2. use large (>10^6), small (<10^-6), zero, and negative numbers as input when asked for a number and note output
+            3. use the program for a long time until it breaks
+            4. use integers instead of Booleans as inputs and note output
+[
+3
+@
+You are testing code that has an input textbox that accepts a range of numbers from .50 to .60. Which of these answers is the best example of boundary value testing?
+            1. use test inputs .51, .59, .61, .62 and .63
+            2. use test inputs 0.0, .50, .60, and 100
+            3. use test inputs -.50, .50, -.60, and .60
+            4. use test inputs .49, .50, .51, .59, .60, and .61
+[
+4
+@
+Which of these BEST describes integration testing?
+            1. it helps ensure individual components function as advertised
+            2. it helps ensure a fully-built system has no defects from a user's point of view
+            3. it helps ensure that the latest fixes and enhancements didn't break something that used to work
+            4. it helps ensure components can communicate with each other properly
+[
+4
+@
+Which of the following BEST describes unit testing?
+            1. it helps ensure individual components function as advertised
+            2. it helps ensure components can communicate with each other properly
+            3. it helps ensure a fully-built system has no defects from a user's point of view
+            4. it helps ensure that the latest fixes and enhancements didn't break something that used to work
+[
+1
+@
+What kind of error is the code: " if ( x > b and x < b) { " ?
+            1. semantic error
+            2. logic error
+            3. runtime error
+            4. syntax error
+[
+2
+@
+Why are logic errors often the hardest type to find and correct?
+            1. because they are correct syntax and usually don't generate error messages
+            2. because math is the most difficult part of programming and the symbols are often confusing
+            3. because computers don't always evaluate logical statements the same every time they are executed
+            4. because modern compilers only recognize about 90% of logical errors
+[
+1
+@
+You have coded a loop that ends when the position of one object matches the position of another object.  Which of these is a likely error in your code?
+            1. You have used only floating point to describe the positions objects when they should be integers.
+            2. The logic in your loop doesn't use an if statement.
+            3. You haven't properly named your position variables in the code.
+            4. The condition that the objects positions match is never met - they aren't exactly equal - and the loop never ends.
+[
+4
+@
+Which of these describe runtime errors?
+            1. These are errors detected while the program executes. These are often discovered when the user enters illegal data.
+            2. These are errors made by humans typing in code when they are under pressure to meet a time schedule.
+            3. They are errors that occur when the algorithm used doesn't work correctly.
+            4. These are errors caused by confusing the use of >, <, & and ||
+[
+1
+@
+When a programmer types something that does not conform to the rules of the programming language, it results in what kind of error?
+            1. syntax
+            2. semantic
+            3. runtime
+            4. Logical
+[
+1
+@
+What is a programming application that is constructed starting with a high-level description of what it is supposed to do, and breaking the specification down into simpler and simpler pieces, until a level has been reached?
+            1. bottom-up programming
+            2. top-down programming
+            3. functional programming
+            4. modular programming
+[
+2
+@
+Which of these is a BEST practice for protecting passwords or personal data?
+            1. Keep passwords in desk drawers instead of on top of the desk.
+            2. Use strong passwords that are protected and not shared with anyone.
+            3. Tell only trusted associates your password.
+            4. Use email instead of your phone to send someone your password.
+[
+2
+@
+Which of these would most alert you that you may have a possible email threat?
+            1. Your bank sends you an email during non-business hours.
+            2. You are asked to click on a link and share private information such as account numbers and passwords.
+            3. An e-commerce site you use frequently sends you a notice at the end of the year that your credit card is about to expire.
+            4. You get an email from your employer while you are at work.
+[
+2
+@
+What is the purpose of a firewall on your computer?
+            1. to increase the speed of data communication on the internet
+            2. to remove viruses from your computer
+            3. to block unauthorized systems on the internet from gaining access to your computer and its data
+            4. to share data with identified friends and coworkers
+[
+3
+@
+How does antivirus software protect the computer?
+            1. It identifies malicious code on the computer by scanning the code and then removes or quarantines that piece of code.
+            2. It blocks unauthorized systems on the internet from gaining access to your computer and its data.
+            3. It erases all of the computer's temporary files that are no longer needed.
+            4. It slows down the computer's processor so that viruses can't spread quickly enough.
+[
+1
+@
+Which of these describes the Phishing scam?
+            1. a situation in which one person or program successfully masquerades as another by falsifying data, thereby gaining an illegitimate advantage
+            2. the fraudulent practice of sending emails purporting to be from reputable companies in order to induce individuals to reveal personal information, such as passwords and credit card numbers
+            3. the use of electronic messaging systems to send an unsolicited message, especially advertising, as well as sending messages repeatedly on the same site
+            4. a perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet
+[
+2
+@
+Which of these describes what spamming is?
+            1. the use of electronic messaging systems to send an unsolicited message, especially advertising, as well as sending messages repeatedly on the same site
+            2. the fraudulent practice of sending emails purporting to be from reputable companies in order to induce individuals to reveal personal information, such as passwords and credit card numbers
+            3. a situation in which one person or program successfully masquerades as another by falsifying data, thereby gaining an illegitimate advantage
+            4. a perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet
+[
+1
+@
+Which of the following BEST describes a spoofing attack?
+            1. the use of electronic messaging systems to send an unsolicited message, especially advertising, as well as sending messages repeatedly on the same site
+            2. the fraudulent practice of sending emails purporting to be from reputable companies in order to induce individuals to reveal personal information, such as passwords and credit card numbers
+            3. a situation in which one person or program successfully masquerades as another by falsifying data, thereby gaining an illegitimate advantage
+            4. a perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet
+[
+3
+@
+Which of the following BEST describes denial-of-service attack?
+            1. a situation in which one person or program successfully masquerades as another by falsifying data, thereby gaining an illegitimate advantage
+            2. the use of electronic messaging systems to send an unsolicited message, especially advertising, as well as sending messages repeatedly on the same site
+            3. the fraudulent practice of sending emails purporting to be from reputable companies in order to induce individuals to reveal personal information, such as passwords and credit card numbers
+            4. a perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected to the Internet
+[
+4
+@
+What is a cross-site scripting vulnerability?
+            1. it enables attackers to inject client-side scripts into web pages viewed by other users
+            2. it enables users to write programs longer than 10K lines of code, thus weakening the operating system
+            3. it is use of a browser not developed by Microsoft Corporation or Google Inc.
+            4. it is the practice of placing computer programmers too close together in the work environment
+[
+1
+@
+What is a software license restriction?
+            1. It keeps users from accessing the software if they don't pay for it.
+            2. It allows users to only copy the software for family members.
+            3. It informs users of the software what they are legally allowed to do with it, especially with respect to copying it.
+            4. It keeps users from viewing the code the software was written in.
+[
+3
+@
+Which of these is a disadvantage of software licensing?
+            1. It takes away the freedom of software developers.
+            2. It only helps a few big software companies.
+            3. It doesn't match the goals of the US constitution.
+            4. It limits the number of possible users of the software and makes it more expensive to use.
+[
+4
+@
+What is a virus installed on many computers to activate at the same time and flood a target with traffic to the point the server becomes overwhelmed?
+            1. phishing
+            2. pharming
+            3. distributed denial of service attack (Ddos)
+            4. override
+[
+3
+@
+What is a targeted attack where customized e-mails appear to come from one's organization?
+            1. spear phishing
+            2. adware
+            3. browser hijacking
+            4. spyware
+[
+1
+@
+What is the name of hackers who have good intentions; but lack permission?
+            1. black hat
+            2. gray hat
+            3. red hat
+            4. white hat
+[
+2
+@
+Which malware is hard to remove, because it buries itself deep in system software?
+            1. ransomware
+            2. key logger
+            3. rootkit
+            4. trojan horse
+[
+3
+@
+What is the best method to increase password security?
+            1. include capital letters
+            2. nonsense words
+            3. include symbols $, etc.
+            4. longer length
+[
+4
+@
+Which of these is the best way to protect your data in your computer system?
+            1. have up to date screen savers
+            2. only download expensive apps
+            3. having up to date virus protection
+            4. have a computer that is less than 2 years old
+[
+3
+@
+What is the technique for encryption that shifts the alphabet by some number of characters?
+            1. random substitution cipher
+            2. alphabet cipher
+            3. caesar cipher
+            4. Vigenère Cipher
+[
+3
+@
+What type of encryption uses a public key and a private key?
+            1. asymmetric
+            2. codebook
+            3. cipher
+            4. symmetric
+[
+1
+@
+SQL Injection is a method of what?
+            1. database management
+            2. sanitizing output
+            3. sanitizing input
+            4. modifying data
+[
+3
+@
+What is the CIA Triad?
+            1. confidentiality, integrity and availability
+            2. computation, innovation and aggregation
+            3. collaboration, investigation, and assessment
+            4. compression, innovation and aggregation
+[
+1
+@
+What is the "digital divide"?
+            1. the difference between those who have easy access to computers and the Internet, and those who do not
+            2. the distance between two computers in different countries
+            3. the difference in age of computer users divided in to a young category and an old category
+            4. the way that computers do mathematical operations like division
+[
+1
+@
+What is the "technological singularity"?
+            1. It is the time and place where computers were first invented and there was only a single computer.
+            2. It is the idea that technological progress will reach a point where machines are exponentially smarter than humans.
+            3. It is the idea that technological progress will reach a point where no more progress can be made and will be singular.
+            4. It is the center of a computer where all the CPU's get their power and memory resources.
+[
+2
+@
+What is "big data?"
+            1. to help a software company defend itself in the case of lawsuits
+            2. to allow software employees to keep a record of all of their work done and defend their pay
+            3. extremely large data sets that may be analyzed computationally to reveal patterns and trends human behavior and interactions
+            4. to allow a software company to sell earlier versions at a lower price to developing countries
+[
+3
+@
+Who are the members of the Internet Engineering Task Force (IETF)?
+            1. a collection of the leaders of the top internet providers
+            2. an international coalition of government agencies
+            3. a group of political leaders and heads of state
+            4. a loosely organized collection of citizens and engineers
+[
+4
+@
+How is data stored on sites using 'cloud computing'?
+            1. stored on a giant server
+            2. saved to hard drive and syncs with site
+            3. saved on home modem
+            4. cloud Computing doesn't store data
+[
+1
+@
+What is information broken down into chunks before being sent by a computer called?
+            1. packages
+            2. messages
+            3. letters
+            4. packets
+[
+4
+@
+What is a HTTP?
+            1. a protocol used for transmitting web pages over the Internet
+            2. a system that translates domain names to IP addresses
+            3. a number assigned to any device that is connected to the Internet
+            4. an easy-to-remember address for calling a web page
+[
+1
+@
+What is 'the cloud'?
+            1. a form of word processing
+            2. a virtual gaming environment
+            3. an accessible network
+            4. a type of security software
+[
+3
+@
+In cartesian coordinates, x is positive to the right and y is positive up.  Which of the following describes typical screen coordinates used in computer images, graphics and animations?
+            1. x is positive to the left and y is positive down
+            2. x is positive to the right and y is positive left
+            3. x is positive to the left and y is positive up
+            4. x is positive to the right and y is positive down
+[
+4
+@
+What is the purpose of a CPU in a computer?
+            1. The CPU is the Central Power Unit and provides all the proper voltages for the components.
+            2. The CPU is the Current Pixel Unit and is used for high-end graphics on the computer.
+            3. The CPU is the Central Processing Unit and it is where all calculations and data manipulations are done.
+            4. The CPU is the Current Person User and determines who is using the computer.
+[
+3
+@
+What component invention led to the creation of the personal (home) computer?
+            1. transistor
+            2. vacuum tube
+            3. television
+            4. microprocessor
+[
+4
+@
+What is Moore's law in computers?
+            1. a law that restricts the amount of information that can be transmitted over an internet cable
+            2. an observation that the number of transistors in a dense integrated circuit doubles approximately every two years
+            3. a rule that says the amount of memory you need will decrease each year by ½
+            4. an observation that the number of users on social media doubles every year
+[
+2
+@
+What is voice recognition?
+            1. computer algorithms that create human speech from text typed into the computer
+            2. computer systems that read books to disabled persons
+            3. computer algorithms that receive human speech as input and translate it into data the computer can use
+            4. computer systems that respond to loud noises to turn on devices
+[
+3
+@
