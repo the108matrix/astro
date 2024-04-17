@@ -13,9 +13,10 @@ import streamlit as st
 #In the meantime, below is an example of what you can do with just a few lines of code:
 #"""
 
-thing = st.html('<h1>James was here</h1>')
+#thing = st.html('<h1>James was here</h1>')
 
 """
+`///streamlit testing zone///`
 this is pretty sweet isn't it, but it's not all me.
 I'm messing with the library because of their new `st.experimental_data_editor` feature
 
