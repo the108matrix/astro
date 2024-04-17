@@ -14,6 +14,7 @@ import streamlit as st
 #"""
 
 #thing = st.html('<h1>James was here</h1>')
+#https://docs.streamlit.io/develop/concepts/design/dataframes?ref=blog.streamlit.io
 
 """
 `///streamlit testing zone///`   `///streamlit testing zone///`   `///streamlit testing zone///`
