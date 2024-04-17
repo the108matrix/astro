@@ -20,7 +20,7 @@ import streamlit as st
 """
 """
 this is pretty sweet isn't it, but it's not all me.
-I'm messing with the library because of their new `st.experimental_data_editor` feature
+I'm messing with the `streamlit` library because I want to work their new `st.experimental_data_editor` feature into some private code.
 
 669 points & 114 turns looks pretty cool btw
 """
