@@ -15,6 +15,11 @@ import streamlit as st
 
 thing = st.html('<h1>James was here</h1>')
 
+"""
+this is pretty sweet isn't it, but it's not mine.
+I'm messing with the library because of their new `st.experimental_data_editor` feature
+"""
+
 num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
 
