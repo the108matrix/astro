@@ -23,7 +23,7 @@ def check_admission(student_df, student_name):
         if marks >= 75:
             return f"{student_name} is admitted!"
         else:
-            return f"{student_name} does not meet admission criteria."
+            return f"{student_name} does not meet admission criteria (marks < 75)."
     else:
         return f"{student_name} is not found in the database."
 
@@ -38,9 +38,11 @@ st.subheader('Add New Student')
 new_student_name = st.text_input('Enter student name:')
 new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100)
 
-if st.button('Add Student'):
+if st.button('Add Student') and new_student_marks >= 75:
     student_df = add_student(student_df, new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
+elif st.button('Add Student') and new_student_marks < 75:
+    st.error("Marks should be 75 or greater for admission.")
 
 # View existing students and marks
 st.subheader('Existing Students and Marks')
