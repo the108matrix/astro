@@ -1,20 +1,22 @@
 import streamlit as st
 import pandas as pd
 
-# Load student data from Excel file
-try:
-    student_df = pd.read_excel("student_data.xlsx")
-except FileNotFoundError:
-    student_df = pd.DataFrame(columns=["Name", "Marks"])
+# Function to load student data from Excel file
+def load_student_data():
+    try:
+        return pd.read_excel("student_data.xlsx")
+    except FileNotFoundError:
+        return pd.DataFrame(columns=["Name", "Marks"])
 
 # Function to add a new student to the DataFrame and Excel file
-def add_student(name, marks):
+def add_student(student_df, name, marks):
     new_student = pd.DataFrame([[name, marks]], columns=["Name", "Marks"])
     student_df = student_df.append(new_student, ignore_index=True)
     student_df.to_excel("student_data.xlsx", index=False)
+    return student_df
 
 # Function to check admission criteria
-def check_admission(student_name):
+def check_admission(student_df, student_name):
     student_row = student_df.loc[student_df["Name"] == student_name]
     if not student_row.empty:
         marks = student_row.iloc[0]["Marks"]
@@ -28,13 +30,16 @@ def check_admission(student_name):
 # Streamlit UI
 st.title('Education System')
 
+# Load student data
+student_df = load_student_data()
+
 # Add new student form
 st.subheader('Add New Student')
 new_student_name = st.text_input('Enter student name:')
 new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100)
 
 if st.button('Add Student'):
-    add_student(new_student_name, new_student_marks)
+    student_df = add_student(student_df, new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
 
 # View existing students and marks
@@ -53,5 +58,5 @@ if st.button('Send'):
 st.subheader('Admission Checker')
 admission_student = st.text_input('Enter student name to check admission:')
 if st.button('Check Admission'):
-    admission_result = check_admission(admission_student)
+    admission_result = check_admission(student_df, admission_student)
     st.write(admission_result)
