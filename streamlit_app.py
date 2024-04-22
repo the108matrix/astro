@@ -55,14 +55,64 @@ st.title('Education System')
 # Load student data
 student_df = load_student_data()
 
-# Chatbot interface
-st.subheader('Chat with EducationBot')
-user_input = st.text_input('You:')
+# Add new student form
+st.subheader('Add New Student')
+new_student_name = st.text_input('Enter student name:')
+new_student_marks = st.text_input('Enter student marks:')
 
-if st.button('Send'):
-    response = chatbot(student_df, user_input)
-    st.markdown(response)
+# Use session state to generate unique keys
+if "add_student_key_count" not in st.session_state:
+    st.session_state["add_student_key_count"] = 0
+
+add_student_button_key = f"add_student_button_{st.session_state['add_student_key_count']}"
+
+if st.button('Add Student', key=add_student_button_key):
+    try:
+        marks = int(new_student_marks)
+        if marks >= 75:
+            student_df = add_student(student_df, new_student_name, marks)
+            st.success(f'{new_student_name} added successfully!')
+        else:
+            st.error("Marks should be 75 or greater for admission.")
+    except ValueError:
+        st.error("Please enter a valid integer for marks.")
+    st.session_state["add_student_key_count"] += 1
 
 # View existing students and marks
 st.subheader('Existing Students and Marks')
 st.write(student_df)
+
+# Chatbot interface
+st.subheader('Chat with EducationBot')
+user_input = st.text_input('You:')
+
+# Use session state to generate unique keys
+if "send_button_key_count" not in st.session_state:
+    st.session_state["send_button_key_count"] = 0
+
+send_button_key = f"send_button_{st.session_state['send_button_key_count']}"
+
+if st.button('Send', key=send_button_key):
+    response = chatbot(student_df, user_input)
+    st.markdown(response)
+    st.session_state["send_button_key_count"] += 1
+
+# Admission checker
+st.subheader('Admission Checker')
+admission_student = st.text_input('Enter student name to check admission:')
+
+# Use session state to generate unique keys
+if "check_admission_key_count" not in st.session_state:
+    st.session_state["check_admission_key_count"] = 0
+
+check_admission_button_key = f"check_admission_button_{st.session_state['check_admission_key_count']}"
+
+if st.button('Check Admission', key=check_admission_button_key):
+    admission_result = check_admission(student_df, admission_student)
+    st.write(admission_result)
+    st.session_state["check_admission_key_count"] += 1
+
+# Chat input functionality
+prompt = st.text_input("Say something")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
