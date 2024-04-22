@@ -60,3 +60,8 @@ admission_student = st.text_input('Enter student name to check admission:')
 if st.button('Check Admission'):
     admission_result = check_admission(student_df, admission_student)
     st.write(admission_result)
+
+# Chat input functionality
+prompt = st.text_input("Say something")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
