@@ -1,12 +1,24 @@
 import streamlit as st
 
-# Dummy student database (replace with your database integration)
-students = {
-    'Alice': {'marks': 85},
-    'Bob': {'marks': 70},
-    'Charlie': {'marks': 60}
-}
+import mysql.connector
 
+# Establish database connection
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="recovery",
+    database="test"
+)
+cursor = conn.cursor()
+
+# Retrieve student information from database
+cursor.execute("SELECT name, marks FROM students")
+students = {name: {'marks': marks} for name, marks in cursor.fetchall()}
+
+# Function to add a new student to the database
+def add_student(name, marks):
+    cursor.execute("INSERT INTO students (name, marks) VALUES (%s, %s)", (name, marks))
+    conn.commit()
 # Function to check admission criteria
 def check_admission(student_name):
     if student_name in students:
