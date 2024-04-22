@@ -38,7 +38,9 @@ st.subheader('Add New Student')
 new_student_name = st.text_input('Enter student name:', key="new_student_name")
 new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100, key="new_student_marks")
 
-add_student_button_key = "add_student_button_" + new_student_name  # Unique key for each student
+# Unique key for each student
+add_student_button_key = "add_student_button_" + new_student_name
+
 if st.button('Add Student', key=add_student_button_key) and new_student_marks >= 75:
     student_df = add_student(student_df, new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
@@ -52,8 +54,8 @@ st.write(student_df)
 # Chatbot interface
 st.subheader('Chat with EducationBot')
 user_input = st.text_input('You:', key="user_input")
-
 send_button_key = "send_button_" + user_input  # Unique key for each user input
+
 if st.button('Send', key=send_button_key):
     response = "I'm sorry, I didn't understand that."
     st.write('EducationBot:', response)
@@ -62,6 +64,7 @@ if st.button('Send', key=send_button_key):
 st.subheader('Admission Checker')
 admission_student = st.text_input('Enter student name to check admission:', key="admission_student")
 check_admission_button_key = "check_admission_button_" + admission_student  # Unique key for each admission check
+
 if st.button('Check Admission', key=check_admission_button_key):
     admission_result = check_admission(student_df, admission_student)
     st.write(admission_result)
