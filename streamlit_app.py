@@ -1,41 +1,29 @@
 import streamlit as st
+import pandas as pd
 
-import mysql.connector
+# Load student data from Excel file
+try:
+    student_df = pd.read_excel("student_data.xlsx")
+except FileNotFoundError:
+    student_df = pd.DataFrame(columns=["Name", "Marks"])
 
-# Establish database connection
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="recovery",
-    database="test"
-)
-cursor = conn.cursor()
-
-# Retrieve student information from database
-cursor.execute("SELECT name, marks FROM students")
-students = {name: {'marks': marks} for name, marks in cursor.fetchall()}
-
-# Function to add a new student to the database
+# Function to add a new student to the DataFrame and Excel file
 def add_student(name, marks):
-    cursor.execute("INSERT INTO students (name, marks) VALUES (%s, %s)", (name, marks))
-    conn.commit()
+    new_student = pd.DataFrame([[name, marks]], columns=["Name", "Marks"])
+    student_df = student_df.append(new_student, ignore_index=True)
+    student_df.to_excel("student_data.xlsx", index=False)
+
 # Function to check admission criteria
 def check_admission(student_name):
-    if student_name in students:
-        marks = students[student_name]['marks']
+    student_row = student_df.loc[student_df["Name"] == student_name]
+    if not student_row.empty:
+        marks = student_row.iloc[0]["Marks"]
         if marks >= 75:
             return f"{student_name} is admitted!"
         else:
             return f"{student_name} does not meet admission criteria."
     else:
         return f"{student_name} is not found in the database."
-
-# Function to handle chatbot responses
-def get_chatbot_response(user_input, students):
-    if user_input.strip() == 'view students':
-        return '\n'.join([f'{student}: {details["marks"]}' for student, details in students.items()])
-    else:
-        return "I'm sorry, I didn't understand that."
 
 # Streamlit UI
 st.title('Education System')
@@ -46,20 +34,19 @@ new_student_name = st.text_input('Enter student name:')
 new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100)
 
 if st.button('Add Student'):
-    students[new_student_name] = {'marks': new_student_marks}
+    add_student(new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
 
 # View existing students and marks
 st.subheader('Existing Students and Marks')
-for student, details in students.items():
-    st.write(f'{student}: {details["marks"]}')
+st.write(student_df)
 
 # Chatbot interface
 st.subheader('Chat with EducationBot')
 user_input = st.text_input('You:')
 
 if st.button('Send'):
-    response = get_chatbot_response(user_input, students)
+    response = "I'm sorry, I didn't understand that."
     st.write('EducationBot:', response)
 
 # Admission checker
