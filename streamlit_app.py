@@ -2,39 +2,60 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
-"""
-# Welcome to Streamlit!
+# Initialize ChatBot
+chatbot = ChatBot('EducationBot')
+trainer = ChatterBotCorpusTrainer(chatbot)
+trainer.train('chatterbot.corpus.english')
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+# Dummy student database (replace with your database integration)
+students = {
+    'Alice': {'marks': 85},
+    'Bob': {'marks': 70},
+    'Charlie': {'marks': 60}
+}
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+# Function to check admission criteria
+def check_admission(student_name):
+    if student_name in students:
+        marks = students[student_name]['marks']
+        if marks >= 75:
+            return f"{student_name} is admitted!"
+        else:
+            return f"{student_name} does not meet admission criteria."
+    else:
+        return f"{student_name} is not found in the database."
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+# Streamlit UI
+st.title('Education System')
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+# Add new student form
+st.subheader('Add New Student')
+new_student_name = st.text_input('Enter student name:')
+new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100)
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+if st.button('Add Student'):
+    students[new_student_name] = {'marks': new_student_marks}
+    st.success(f'{new_student_name} added successfully!')
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
+# View existing students and marks
+st.subheader('Existing Students and Marks')
+for student, details in students.items():
+    st.write(f'{student}: {details["marks"]}')
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+# Chatbot interface
+st.subheader('Chat with EducationBot')
+user_input = st.text_input('You:')
+
+if st.button('Send'):
+    response = chatbot.get_response(user_input)
+    st.write('EducationBot:', response)
+
+# Admission checker
+st.subheader('Admission Checker')
+admission_student = st.text_input('Enter student name to check admission:')
+if st.button('Check Admission'):
+    admission_result = check_admission(admission_student)
+    st.write(admission_result)
