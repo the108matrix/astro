@@ -32,10 +32,11 @@ def chatbot(student_df, query):
     if "view students" in query.lower():
         return student_df.to_markdown()
     elif "add student" in query.lower():
-        name = input("Enter student name: ")
-        marks = input("Enter student marks: ")
+        st.subheader("Add New Student")
+        name = st.text_input("Enter student name:")
+        marks_str = st.text_input("Enter student marks:")
         try:
-            marks = int(marks)
+            marks = int(marks_str)
             if marks >= 75:
                 student_df = add_student(student_df, name, marks)
                 return f"{name} added successfully!"
@@ -44,7 +45,8 @@ def chatbot(student_df, query):
         except ValueError:
             return "Please enter a valid integer for marks."
     elif "check admission" in query.lower():
-        name = input("Enter student name to check admission: ")
+        st.subheader("Admission Checker")
+        name = st.text_input("Enter student name to check admission:")
         return check_admission(student_df, name)
     else:
         return "I'm sorry, I didn't understand that query."
