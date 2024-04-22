@@ -1,6 +1,3 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
 
 # Dummy student database (replace with your database integration)
@@ -26,7 +23,7 @@ def get_chatbot_response(user_input, students):
     if user_input.strip() == 'view students':
         return '\n'.join([f'{student}: {details["marks"]}' for student, details in students.items()])
     else:
-        return str(chatbot.get_response(user_input))
+        return "I'm sorry, I didn't understand that."
 
 # Streamlit UI
 st.title('Education System')
