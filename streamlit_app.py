@@ -26,6 +26,10 @@ def check_admission(student_df, student_name):
             return f"{student_name} does not meet admission criteria (marks < 75)."
     else:
         return f"{student_name} is not found in the database."
+        
+# Chatbot interface
+st.subheader('Chat with EducationBot')
+user_input = st.text_input('You:')
 
 # Chatbot function
 def chatbot(student_df, query):
@@ -84,9 +88,6 @@ if st.button('Add Student', key=add_student_button_key):
 st.subheader('Existing Students and Marks')
 st.write(student_df)
 
-# Chatbot interface
-st.subheader('Chat with EducationBot')
-user_input = st.text_input('You:')
 
 # Use session state to generate unique keys
 if "send_button_key_count" not in st.session_state:
