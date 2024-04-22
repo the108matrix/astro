@@ -2,14 +2,6 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
-
-# Initialize ChatBot
-chatbot = ChatBot('EducationBot')
-trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train('chatterbot.corpus.english')
-
 # Dummy student database (replace with your database integration)
 students = {
     'Alice': {'marks': 85},
@@ -59,3 +51,21 @@ admission_student = st.text_input('Enter student name to check admission:')
 if st.button('Check Admission'):
     admission_result = check_admission(admission_student)
     st.write(admission_result)
+# Streamlit Chatbot
+# Define responses
+responses = {
+    "hi": "Hello!",
+    "how are you?": "I'm fine, thank you!",
+    "what's your name?": "I'm a simple chatbot.",
+    "bye": "Goodbye!"
+}
+
+# Streamlit UI
+st.title('Simple Chatbot')
+
+# Chatbot interface
+user_input = st.text_input('You:')
+if st.button('Send'):
+    response = responses.get(user_input.lower(), "Sorry, I don't understand.")
+    st.write('Chatbot:', response)
+
