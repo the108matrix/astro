@@ -4,7 +4,7 @@ import mysql.connector
 
 # Establish database connection
 conn = mysql.connector.connect(
-    host="localhost",
+    host="MySQL80",
     user="root",
     password="recovery",
     database="test"
