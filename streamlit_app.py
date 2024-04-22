@@ -35,13 +35,13 @@ student_df = load_student_data()
 
 # Add new student form
 st.subheader('Add New Student')
-new_student_name = st.text_input('Enter student name:')
-new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100)
+new_student_name = st.text_input('Enter student name:', key="new_student_name")
+new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100, key="new_student_marks")
 
-if st.button('Add Student') and new_student_marks >= 75:
+if st.button('Add Student', key="add_student_button") and new_student_marks >= 75:
     student_df = add_student(student_df, new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
-elif st.button('Add Student') and new_student_marks < 75:
+elif st.button('Add Student', key="add_student_button") and new_student_marks < 75:
     st.error("Marks should be 75 or greater for admission.")
 
 # View existing students and marks
@@ -50,20 +50,20 @@ st.write(student_df)
 
 # Chatbot interface
 st.subheader('Chat with EducationBot')
-user_input = st.text_input('You:')
+user_input = st.text_input('You:', key="user_input")
 
-if st.button('Send'):
+if st.button('Send', key="send_button"):
     response = "I'm sorry, I didn't understand that."
     st.write('EducationBot:', response)
 
 # Admission checker
 st.subheader('Admission Checker')
-admission_student = st.text_input('Enter student name to check admission:')
-if st.button('Check Admission'):
+admission_student = st.text_input('Enter student name to check admission:', key="admission_student")
+if st.button('Check Admission', key="check_admission_button"):
     admission_result = check_admission(student_df, admission_student)
     st.write(admission_result)
 
 # Chat input functionality
-prompt = st.text_input("Say something")
+prompt = st.text_input("Say something", key="chat_prompt")
 if prompt:
     st.write(f"User has sent the following prompt: {prompt}")
