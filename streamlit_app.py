@@ -2,6 +2,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+
 # Dummy student database (replace with your database integration)
 students = {
     'Alice': {'marks': 85},
@@ -19,6 +20,13 @@ def check_admission(student_name):
             return f"{student_name} does not meet admission criteria."
     else:
         return f"{student_name} is not found in the database."
+
+# Function to handle chatbot responses
+def get_chatbot_response(user_input, students):
+    if user_input.strip() == 'view students':
+        return '\n'.join([f'{student}: {details["marks"]}' for student, details in students.items()])
+    else:
+        return str(chatbot.get_response(user_input))
 
 # Streamlit UI
 st.title('Education System')
@@ -42,7 +50,7 @@ st.subheader('Chat with EducationBot')
 user_input = st.text_input('You:')
 
 if st.button('Send'):
-    response = chatbot.get_response(user_input)
+    response = get_chatbot_response(user_input, students)
     st.write('EducationBot:', response)
 
 # Admission checker
@@ -51,21 +59,3 @@ admission_student = st.text_input('Enter student name to check admission:')
 if st.button('Check Admission'):
     admission_result = check_admission(admission_student)
     st.write(admission_result)
-# Streamlit Chatbot
-# Define responses
-responses = {
-    "hi": "Hello!",
-    "how are you?": "I'm fine, thank you!",
-    "what's your name?": "I'm a simple chatbot.",
-    "bye": "Goodbye!"
-}
-
-# Streamlit UI
-st.title('Simple Chatbot')
-
-# Chatbot interface
-user_input = st.text_input('You:')
-if st.button('Send'):
-    response = responses.get(user_input.lower(), "Sorry, I don't understand.")
-    st.write('Chatbot:', response)
-
