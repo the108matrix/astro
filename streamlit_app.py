@@ -35,8 +35,8 @@ student_df = load_student_data()
 
 # Add new student form
 st.subheader('Add New Student')
-new_student_name = st.text_input('Enter student name:', key="new_student_name")
-new_student_marks = st.number_input('Enter student marks:', min_value=0, max_value=100, key="new_student_marks")
+new_student_name = st.text_input('Enter student name:')
+new_student_marks = st.text_input('Enter student marks:')
 
 # Use session state to generate unique keys
 if "add_student_key_count" not in st.session_state:
@@ -44,12 +44,16 @@ if "add_student_key_count" not in st.session_state:
 
 add_student_button_key = f"add_student_button_{st.session_state['add_student_key_count']}"
 
-if st.button('Add Student', key=add_student_button_key) and new_student_marks >= 75:
-    student_df = add_student(student_df, new_student_name, new_student_marks)
-    st.success(f'{new_student_name} added successfully!')
-    st.session_state["add_student_key_count"] += 1
-elif st.button('Add Student', key=add_student_button_key) and new_student_marks < 75:
-    st.error("Marks should be 75 or greater for admission.")
+if st.button('Add Student', key=add_student_button_key):
+    try:
+        marks = int(new_student_marks)
+        if marks >= 75:
+            student_df = add_student(student_df, new_student_name, marks)
+            st.success(f'{new_student_name} added successfully!')
+        else:
+            st.error("Marks should be 75 or greater for admission.")
+    except ValueError:
+        st.error("Please enter a valid integer for marks.")
     st.session_state["add_student_key_count"] += 1
 
 # View existing students and marks
@@ -58,7 +62,7 @@ st.write(student_df)
 
 # Chatbot interface
 st.subheader('Chat with EducationBot')
-user_input = st.text_input('You:', key="user_input")
+user_input = st.text_input('You:')
 
 # Use session state to generate unique keys
 if "send_button_key_count" not in st.session_state:
@@ -73,7 +77,7 @@ if st.button('Send', key=send_button_key):
 
 # Admission checker
 st.subheader('Admission Checker')
-admission_student = st.text_input('Enter student name to check admission:', key="admission_student")
+admission_student = st.text_input('Enter student name to check admission:')
 
 # Use session state to generate unique keys
 if "check_admission_key_count" not in st.session_state:
@@ -87,6 +91,6 @@ if st.button('Check Admission', key=check_admission_button_key):
     st.session_state["check_admission_key_count"] += 1
 
 # Chat input functionality
-prompt = st.text_input("Say something", key="chat_prompt")
+prompt = st.text_input("Say something")
 if prompt:
     st.write(f"User has sent the following prompt: {prompt}")
