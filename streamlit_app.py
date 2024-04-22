@@ -11,7 +11,7 @@ def load_student_data():
 # Function to add a new student to the DataFrame and Excel file
 def add_student(student_df, name, marks):
     new_student = pd.DataFrame([[name, marks]], columns=["Name", "Marks"])
-    student_df = student_df.append(new_student, ignore_index=True)
+    student_df = pd.concat([student_df, new_student], ignore_index=True)
     student_df.to_excel("student_data.xlsx", index=False)
     return student_df
 
