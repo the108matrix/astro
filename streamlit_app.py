@@ -41,10 +41,10 @@ new_student_marks = st.number_input('Enter student marks:', min_value=0, max_val
 # Unique key for each student
 add_student_button_key = "add_student_button_" + new_student_name
 
-if st.button('Add Student', key=add_student_button_key) and new_student_marks >= 75:
+if st.button('Add Student', key1=add_student_button_key) and new_student_marks >= 75:
     student_df = add_student(student_df, new_student_name, new_student_marks)
     st.success(f'{new_student_name} added successfully!')
-elif st.button('Add Student', key=add_student_button_key) and new_student_marks < 75:
+elif st.button('Add Student', key1=add_student_button_key) and new_student_marks < 75:
     st.error("Marks should be 75 or greater for admission.")
 
 # View existing students and marks
@@ -53,23 +53,24 @@ st.write(student_df)
 
 # Chatbot interface
 st.subheader('Chat with EducationBot')
-user_input = st.text_input('You:', key="user_input")
+user_input = st.text_input('You:', key2="user_input")
 send_button_key = "send_button_" + user_input  # Unique key for each user input
 
-if st.button('Send', key=send_button_key):
+if st.button('Send', key3=send_button_key):
     response = "I'm sorry, I didn't understand that."
     st.write('EducationBot:', response)
 
 # Admission checker
 st.subheader('Admission Checker')
-admission_student = st.text_input('Enter student name to check admission:', key="admission_student")
+admission_student = st.text_input('Enter student name to check admission:', key4="admission_student")
 check_admission_button_key = "check_admission_button_" + admission_student  # Unique key for each admission check
 
-if st.button('Check Admission', key=check_admission_button_key):
+if st.button('Check Admission', key5=check_admission_button_key):
     admission_result = check_admission(student_df, admission_student)
     st.write(admission_result)
 
 # Chat input functionality
-prompt = st.text_input("Say something", key="chat_prompt")
+prompt = st.text_input("Say something", key6
+                       ="chat_prompt")
 if prompt:
     st.write(f"User has sent the following prompt: {prompt}")
