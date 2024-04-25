@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+st.set_page_config(page_title="Education System", page_icon="🎓", layout="wide")
 # Custom CSS style to make all pages red except for the text
 custom_css = """
 <style>
