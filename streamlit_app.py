@@ -37,36 +37,20 @@ st.title('Education System')
 student_df = load_student_data()
 
 # Add Student Section
-st.subheader('Add New Student')
-name = st.text_input("Enter student name:")
-marks_str = st.text_input("Enter student marks:")
+st.sidebar.title('Navigation')
+page = st.sidebar.radio("Go to", ('Home', 'Admission Checker'))
 
-try:
-    marks = int(marks_str)
-    if st.button('Add Student'):  # Button click to add student
-        student_df = add_student(student_df, name, marks)
-        if marks >= 75:
-            st.success(f"{name} added successfully!")
-        else:
-            st.warning(f"Student {name} not added. Marks should be 75 or greater for admission.")
-except ValueError:
-    st.error("Please enter a valid integer for marks.")
-
-# Check Admission Section
-st.subheader('Admission Checker')
-name = st.text_input("Enter student name to check admission:")
-
-if st.button('Check Admission'):  # Button click to check admission
-    admission_status = check_admission(student_df, name)
-    st.write(admission_status)
-
-def display_homepage():
-    st.title("Welcome to the Education System!")
-    st.write("This platform allows you to manage student data and check admission eligibility.")
-
+if page == 'Home':
+    st.subheader('Home Page')
+    st.write("Welcome to the Education System! This platform allows you to manage student data and check admission eligibility.")
+    
     # Button to manage students
     if st.button("Manage Students"):
         st.write(student_df)  # Display student data
+elif page == 'Admission Checker':
+    st.subheader('Admission Checker')
+    name = st.text_input("Enter student name to check admission:")
 
-if __name__ == "__main__":
-    display_homepage()
+    if st.button('Check Admission'):  # Button click to check admission
+        admission_status = check_admission(student_df, name)
+        st.write(admission_status)
