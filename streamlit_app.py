@@ -36,9 +36,8 @@ st.title('Education System')
 # Load student data (hidden)
 student_df = load_student_data()
 
-# Add Student Section
-st.sidebar.title('Navigation')
-page = st.sidebar.radio("Go to", ('Home', 'Admission Checker'))
+# Sidebar navigation
+page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker'))
 
 if page == 'Home':
     st.subheader('Home Page')
@@ -47,6 +46,23 @@ if page == 'Home':
     # Button to manage students
     if st.button("Manage Students"):
         st.write(student_df)  # Display student data
+
+elif page == 'Add Student':
+    st.subheader('Add New Student')
+    name = st.text_input("Enter student name:")
+    marks_str = st.text_input("Enter student marks:")
+
+    try:
+        marks = int(marks_str)
+        if st.button('Add Student'):  # Button click to add student
+            student_df = add_student(student_df, name, marks)
+            if marks >= 75:
+                st.success(f"{name} added successfully!")
+            else:
+                st.warning(f"Student {name} not added. Marks should be 75 or greater for admission.")
+    except ValueError:
+        st.error("Please enter a valid integer for marks.")
+
 elif page == 'Admission Checker':
     st.subheader('Admission Checker')
     name = st.text_input("Enter student name to check admission:")
