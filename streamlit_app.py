@@ -30,6 +30,17 @@ def check_admission(student_df, student_name):
     else:
         return f"{student_name} is not found in the database."
 
+# Function to filter students by course eligibility
+def filter_students_by_course(student_df, course):
+    if course == "Science":
+        return student_df[student_df["Marks"] >= 80]
+    elif course == "Economics":
+        return student_df[student_df["Marks"] >= 75]
+    elif course == "Humanities":
+        return student_df[student_df["Marks"] >= 70]
+    else:
+        return pd.DataFrame(columns=["Name", "Marks"])  # Return empty DataFrame if course is not recognized
+
 # Streamlit UI
 st.title('Education System')
 
@@ -37,7 +48,7 @@ st.title('Education System')
 student_df = load_student_data()
 
 # Sidebar navigation
-page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker'))
+page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker', 'Course Eligibility'))
 
 if page == 'Home':
     st.subheader('Welcome to the Education System!')
@@ -48,6 +59,7 @@ if page == 'Home':
     - Click on **Manage Students** to view student data.
     - Click on **Add Student** to add new students.
     - Click on **Admission Checker** to check admission eligibility.
+    - Click on **Course Eligibility** to see which students are eligible for specific courses.
     """)
     
     # Image or additional information can be added here for a more visually appealing layout
@@ -79,3 +91,11 @@ elif page == 'Admission Checker':
     if st.button('Check Admission'):  # Button click to check admission
         admission_status = check_admission(student_df, name)
         st.write(admission_status)
+
+elif page == 'Course Eligibility':
+    st.subheader('Course Eligibility')
+    course = st.selectbox("Select a course:", ["Science", "Economics", "Humanities"])
+
+    st.write(f"Students eligible for {course} course:")
+    eligible_students = filter_students_by_course(student_df, course)
+    st.write(eligible_students)
