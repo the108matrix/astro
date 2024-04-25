@@ -6,8 +6,6 @@ custom_css = """
 <style>
 body {
     background-color: red;
-}
-.stApp {
     color: black;
 }
 </style>
@@ -66,14 +64,15 @@ page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker
 if page == 'Home':
     st.subheader('Welcome to the Education System!')
     st.markdown("""
-    This platform allows you to manage student data and check admission eligibility.
-    
-    **To get started, you can:**
-    - Click on **Manage Students** to view student data.
-    - Click on **Add Student** to add new students.
-    - Click on **Admission Checker** to check admission eligibility.
-    - Click on **Course Eligibility** to see which students are eligible for specific courses.
-    """)
+    <p>This platform allows you to manage student data and check admission eligibility.</p>
+    <p><strong>To get started, you can:</strong></p>
+    <ul>
+    <li>Click on <strong>Manage Students</strong> to view student data.</li>
+    <li>Click on <strong>Add Student</strong> to add new students.</li>
+    <li>Click on <strong>Admission Checker</strong> to check admission eligibility.</li>
+    <li>Click on <strong>Course Eligibility</strong> to see which students are eligible for specific courses.</li>
+    </ul>
+    """, unsafe_allow_html=True)
     
     # Image or additional information can be added here for a more visually appealing layout
 
