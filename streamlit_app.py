@@ -1,17 +1,5 @@
 import streamlit as st
 import pandas as pd
-st.set_page_config(page_title="Education System", page_icon="🎓", layout="wide")
-# Custom CSS style to make all pages red except for the text
-custom_css = """
-<style>
-body {
-    background-color: red;
-    color: black;
-}
-</style>
-"""
-st.markdown(custom_css, unsafe_allow_html=True)
-
 # Function to load student data from Excel file
 def load_student_data():
     try:
