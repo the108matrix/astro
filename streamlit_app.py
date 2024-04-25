@@ -40,9 +40,18 @@ student_df = load_student_data()
 page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker'))
 
 if page == 'Home':
-    st.subheader('Home Page')
-    st.write("Welcome to the Education System! This platform allows you to manage student data and check admission eligibility.")
+    st.subheader('Welcome to the Education System!')
+    st.markdown("""
+    This platform allows you to manage student data and check admission eligibility.
     
+    **To get started, you can:**
+    - Click on **Manage Students** to view student data.
+    - Click on **Add Student** to add new students.
+    - Click on **Admission Checker** to check admission eligibility.
+    """)
+    
+    # Image or additional information can be added here for a more visually appealing layout
+
     # Button to manage students
     if st.button("Manage Students"):
         st.write(student_df)  # Display student data
