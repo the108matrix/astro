@@ -83,17 +83,13 @@ page = st.sidebar.radio("Navigation", ('Home', 'Add Student', 'Admission Checker
 
 if page == 'Home':
     st.subheader('Welcome to the Education System!')
-    st.markdown("""
-    <p>This platform allows you to manage student data and check admission eligibility.</p>
-    <p><strong>To get started, you can:</strong></p>
-    <ul>
-    <li>Click on <strong>Manage Students</strong> to view student data.</li>
-    <li>Click on <strong>Add Student</strong> to add new students.</li>
-    <li>Click on <strong>Admission Checker</strong> to check admission eligibility.</li>
-    <li>Click on <strong>Course Eligibility</strong> to see which students are eligible for specific courses.</li>
-    </ul>
-    """, unsafe_allow_html=True)
-    
+    st.write("This platform allows you to manage student data and check admission eligibility.")
+    st.write("To get started, you can:")
+    st.write("- Click on 'Manage Students' to view student data.")
+    st.write("- Click on 'Add Student' to add new students.")
+    st.write("- Click on 'Admission Checker' to check admission eligibility.")
+    st.write("- Click on 'Course Eligibility' to see which students are eligible for specific courses.")
+
     # Image or additional information can be added here for a more visually appealing layout
 
     # Button to manage students
@@ -107,27 +103,4 @@ elif page == 'Add Student':
     marks_str = st.text_input("Enter student marks:")
 
     try:
-        marks = int(marks_str)
-        if st.button('Add Student'):  # Button click to add student
-            if add_student(name, marks):
-                st.success(f"{name} added successfully!")
-            else:
-                st.warning(f"Student {name} not added. Marks should be 75 or greater for admission.")
-    except ValueError:
-        st.error("Please enter a valid integer for marks.")
-
-elif page == 'Admission Checker':
-    st.subheader('Admission Checker')
-    name = st.text_input("Enter student name to check admission:")
-
-    if st.button('Check Admission'):  # Button click to check admission
-        admission_status = check_admission(name)
-        st.write(admission_status)
-
-elif page == 'Course Eligibility':
-    st.subheader('Course Eligibility')
-    course = st.selectbox("Select a course:", ["Science", "Economics", "Humanities"])
-
-    st.write(f"Students eligible for {course} course:")
-    eligible_students = filter_students_by_course(course)
-    st.write(eligible_students)
+        marks = int
