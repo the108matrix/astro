@@ -1,3 +1,7 @@
+import streamlit as st
+import pandas as pd
+import mysql.connector
+
 # Streamlit UI
 st.title('Education System')
 
