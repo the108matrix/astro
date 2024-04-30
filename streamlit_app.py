@@ -1,40 +1,42 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
+import yfinance as yf
+import matplotlib.pyplot as plt
 
-"""
-# Welcome to Streamlit!
+# Step 1: Data Collection
+def download_stock_data(stock_symbol, start_date, end_date):
+    # Download historical data using yfinance
+    stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
+    return stock_data
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+def main():
+    st.title('Stock Data Visualizer')
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+    # Add a text input box for the stock symbol
+    stock_symbol = st.text_input('Enter Stock Symbol', 'AAPL')
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+    # Add a date picker for selecting start and end dates
+    start_date = st.date_input('Start Date', value=None)
+    end_date = st.date_input('End Date', value=None)
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+    if start_date is not None and end_date is not None:
+        # Download stock data
+        stock_data = download_stock_data(stock_symbol, start_date, end_date)
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+        if not stock_data.empty:
+            # Display the downloaded data
+            st.write('**Historical Stock Data:**')
+            st.write(stock_data)
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
+            # Plot the closing price
+            plt.figure(figsize=(10, 6))
+            plt.plot(stock_data.index, stock_data['Close'], label='Close Price')
+            plt.title('Historical Close Price of {}'.format(stock_symbol))
+            plt.xlabel('Date')
+            plt.ylabel('Price ($)')
+            plt.legend()
+            st.pyplot(plt)
+        else:
+            st.write('No data available for the selected stock symbol and date range.')
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+if __name__ == "__main__":
+    main()
