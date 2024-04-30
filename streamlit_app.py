@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Step 1: Data Collection
 def download_stock_data(stock_symbol, start_date, end_date):
     # Download historical data using yfinance
-    stock_data = yf.download(stock_symbol, start=start_date, end=end_date)
+    stock_data = yf.download(stock_symbol, start=start_date, end=end_date, progress=False)
     return stock_data
 
 def main():
