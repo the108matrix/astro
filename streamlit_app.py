@@ -81,8 +81,9 @@ elif page == 'Data Visualization':
     else:
         # Histogram of student marks distribution
         st.write("Histogram of Student Marks Distribution")
-        plt.hist(student_df["Marks"], bins=10, color='skyblue', edgecolor='black')
-        plt.xlabel('Marks')
-        plt.ylabel('Frequency')
-        plt.title('Distribution of Student Marks')
-        st.pyplot()
+        fig, ax = plt.subplots()
+        ax.hist(student_df["Marks"], bins=10, color='skyblue', edgecolor='black')
+        ax.set_xlabel('Marks')
+        ax.set_ylabel('Frequency')
+        ax.set_title('Distribution of Student Marks')
+        st.pyplot(fig)
