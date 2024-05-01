@@ -7,22 +7,21 @@ def load_student_data():
     student_data = pd.read_excel("student_data.xlsx")
     return student_data
 
-# Function to add a new student to the Excel sheet
 def add_student(name, marks):
     student_df = load_student_data()
     if name in student_df["Name"].values:
         st.warning("Student already exists in the database.")
     elif marks >= 75:
-        # Add student to DataFrame
+        # Create a new DataFrame with the new student data
         new_student = pd.DataFrame({"Name": [name], "Marks": [marks]})
-        student_df = student_df.append(new_student, ignore_index=True)
-        
-        # Write updated DataFrame to Excel sheet
+        # Append the new student DataFrame to the existing student DataFrame
+        student_df = pd.concat([student_df, new_student], ignore_index=True)
+        # Write the updated DataFrame to the Excel sheet
         student_df.to_excel("students.xlsx", index=False)
-        
         st.success(f"{name} added successfully!")
     else:
         st.warning("Student not added. Marks should be 75 or greater for admission.")
+
 
 # Function to filter students by course eligibility
 def filter_students_by_course(course):
