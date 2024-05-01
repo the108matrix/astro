@@ -69,14 +69,16 @@ elif page == 'Admission Checker':
     st.subheader('Admission Checker')
     name = st.text_input("Enter student name to check admission:")
 
-    if st.button('Check Admission'):  # Button click to check admission
-        student_found = name in load_student_data()["Name"].values
-        if student_found:
-            admission_status = check_admission(name)
-            st.write(admission_status)
-        else:
-            st.write("Student not found in the database.")
+   elif page == 'Admission Checker':
+    st.subheader('Admission Checker')
+    name = st.text_input("Enter student name to check admission:")
 
+    if st.button('Check Admission'):  # Button click to check admission
+        student_df = load_student_data()
+        if name in student_df["Name"].values:
+            st.write("Student found.")
+        else:
+            st.write("Student not found.")
 
 
 elif page == 'Course Eligibility':
