@@ -75,15 +75,9 @@ elif page == 'Data Visualization':
     # Load student data
     student_df = load_student_data()
 
-    # Print column names for debugging
-    st.write("Column Names:", student_df.columns)
-
-    # Display DataFrame for debugging
-    st.write("DataFrame:", student_df)
-
-    # Check if the "Course" column exists
-    if "Course" not in student_df.columns:
-        st.error("The 'Course' column is missing in the student data.")
+    # Check if the "Marks" column exists
+    if "Marks" not in student_df.columns:
+        st.error("The 'Marks' column is missing in the student data.")
     else:
         # Histogram of student marks distribution
         st.write("Histogram of Student Marks Distribution")
@@ -91,14 +85,4 @@ elif page == 'Data Visualization':
         plt.xlabel('Marks')
         plt.ylabel('Frequency')
         plt.title('Distribution of Student Marks')
-        st.pyplot()
-
-        # Pie chart showing percentage of students eligible for each course
-        st.write("Pie Chart: Percentage of Students Eligible for Each Course")
-        course_counts = student_df.groupby("Course").size()
-        st.write(course_counts)
-        plt.figure(figsize=(8, 6))
-        plt.pie(course_counts, labels=course_counts.index, autopct='%1.1f%%', startangle=140)
-        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.title('Percentage of Students Eligible for Each Course')
         st.pyplot()
