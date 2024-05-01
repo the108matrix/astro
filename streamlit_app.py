@@ -13,7 +13,13 @@ def add_student(name, marks):
     if name in student_df["Name"].values:
         st.warning("Student already exists in the database.")
     elif marks >= 75:
-        # Add student functionality here (e.g., append to Excel sheet)
+        # Add student to DataFrame
+        new_student = pd.DataFrame({"Name": [name], "Marks": [marks]})
+        student_df = student_df.append(new_student, ignore_index=True)
+        
+        # Write updated DataFrame to Excel sheet
+        student_df.to_excel("students.xlsx", index=False)
+        
         st.success(f"{name} added successfully!")
     else:
         st.warning("Student not added. Marks should be 75 or greater for admission.")
