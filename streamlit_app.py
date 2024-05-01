@@ -64,9 +64,11 @@ elif page == 'Add Student':
     try:
         marks = int(marks_str)
         if st.button('Add Student'):  # Button click to add student
-            add_student(name, marks)
+            student_df = add_student(name, marks)  # Update the DataFrame after adding student
+            st.write(student_df)  # Display updated student data
     except ValueError:
         st.error("Please enter a valid integer for marks.")
+
 
 elif page == 'Admission Checker':
     st.subheader('Admission Checker')
