@@ -17,10 +17,13 @@ def add_student(name, marks):
         # Append the new student DataFrame to the existing student DataFrame
         student_df = pd.concat([student_df, new_student], ignore_index=True)
         # Write the updated DataFrame to the Excel sheet
-        student_df.to_excel("students.xlsx", index=False)
+        student_df.to_excel("student_data.xlsx", index=False)  # Updated file name
         st.success(f"{name} added successfully!")
+        return student_df  # Return the updated DataFrame
     else:
         st.warning("Student not added. Marks should be 75 or greater for admission.")
+        return student_df  # Return the original DataFrame if student not added
+
 
 
 
