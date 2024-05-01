@@ -75,6 +75,12 @@ elif page == 'Data Visualization':
     # Load student data
     student_df = load_student_data()
 
+    # Print column names for debugging
+    st.write("Column Names:", student_df.columns)
+
+    # Display DataFrame for debugging
+    st.write("DataFrame:", student_df)
+
     # Check if the "Course" column exists
     if "Course" not in student_df.columns:
         st.error("The 'Course' column is missing in the student data.")
@@ -96,4 +102,3 @@ elif page == 'Data Visualization':
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         plt.title('Percentage of Students Eligible for Each Course')
         st.pyplot()
-
