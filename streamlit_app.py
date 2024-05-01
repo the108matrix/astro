@@ -37,18 +37,21 @@ if page == 'Home':
         student_df = load_student_data()
         st.write(student_df)  # Display student data
 
-elif page == 'Add Student':
-    st.subheader('Add New Student')
-    name = st.text_input("Enter student name:")
-    marks_str = st.text_input("Enter student marks:")
-
-    try:
-        marks = int(marks_str)
-        if st.button('Add Student'):  # Button click to add student
-            student_df = add_student(name, marks)  # Update the DataFrame after adding student
-            st.write(student_df)  # Display updated student data
-    except ValueError:
-        st.error("Please enter a valid integer for marks.")
+def add_student(name, marks):
+    student_df = load_student_data()
+    if name in student_df["Name"].values:
+        st.warning("Student already exists in the database.")
+    elif marks >= 75:
+        # Create a new DataFrame with the new student data
+        new_student = pd.DataFrame({"Name": [name], "Marks": [marks]})
+        # Append the new student DataFrame to the existing student DataFrame
+        student_df = pd.concat([student_df, new_student], ignore_index=True)
+        # Write the updated DataFrame to the Excel sheet (if needed)
+        # student_df.to_excel("students.xlsx", index=False)
+        st.success(f"{name} added successfully!")
+    else:
+        st.warning("Student not added. Marks should be 75 or greater for admission.")
+    return student_df  # Return the updated DataFrame
 
 elif page == 'Admission Checker':
     st.subheader('Admission Checker')
