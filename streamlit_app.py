@@ -70,8 +70,13 @@ elif page == 'Admission Checker':
     name = st.text_input("Enter student name to check admission:")
 
     if st.button('Check Admission'):  # Button click to check admission
-        admission_status = check_admission(name)
-        st.write(admission_status)
+        student_found = name in load_student_data()["Name"].values
+        if student_found:
+            admission_status = check_admission(name)
+            st.write(admission_status)
+        else:
+            st.write("Student not found in the database.")
+
 
 
 elif page == 'Course Eligibility':
