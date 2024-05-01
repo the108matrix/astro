@@ -53,6 +53,8 @@ def add_student(name, marks):
         st.warning("Student not added. Marks should be 75 or greater for admission.")
     return student_df  # Return the updated DataFrame
 
+# Other pages (Admission Checker, Course Eligibility, Data Visualization) follow
+
 elif page == 'Admission Checker':
     st.subheader('Admission Checker')
     name = st.text_input("Enter student name to check admission:")
