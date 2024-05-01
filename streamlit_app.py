@@ -75,20 +75,25 @@ elif page == 'Data Visualization':
     # Load student data
     student_df = load_student_data()
 
-    # Histogram of student marks distribution
-    st.write("Histogram of Student Marks Distribution")
-    plt.hist(student_df["Marks"], bins=10, color='skyblue', edgecolor='black')
-    plt.xlabel('Marks')
-    plt.ylabel('Frequency')
-    plt.title('Distribution of Student Marks')
-    st.pyplot()
+    # Check if the "Course" column exists
+    if "Course" not in student_df.columns:
+        st.error("The 'Course' column is missing in the student data.")
+    else:
+        # Histogram of student marks distribution
+        st.write("Histogram of Student Marks Distribution")
+        plt.hist(student_df["Marks"], bins=10, color='skyblue', edgecolor='black')
+        plt.xlabel('Marks')
+        plt.ylabel('Frequency')
+        plt.title('Distribution of Student Marks')
+        st.pyplot()
 
-    # Pie chart showing percentage of students eligible for each course
-    st.write("Pie Chart: Percentage of Students Eligible for Each Course")
-    course_counts = student_df.groupby("Course").size()
-    st.write(course_counts)
-    plt.figure(figsize=(8, 6))
-    plt.pie(course_counts, labels=course_counts.index, autopct='%1.1f%%', startangle=140)
-    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    plt.title('Percentage of Students Eligible for Each Course')
-    st.pyplot()
+        # Pie chart showing percentage of students eligible for each course
+        st.write("Pie Chart: Percentage of Students Eligible for Each Course")
+        course_counts = student_df.groupby("Course").size()
+        st.write(course_counts)
+        plt.figure(figsize=(8, 6))
+        plt.pie(course_counts, labels=course_counts.index, autopct='%1.1f%%', startangle=140)
+        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        plt.title('Percentage of Students Eligible for Each Course')
+        st.pyplot()
+
