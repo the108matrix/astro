@@ -4,7 +4,7 @@ import pandas as pd
 # Function to load student data from Excel sheet
 def load_student_data():
     # Read student data from Excel sheet
-    student_data = pd.read_excel("students.xlsx")
+    student_data = pd.read_excel("student_data.xlsx")
     return student_data
 
 # Function to add a new student to the Excel sheet
