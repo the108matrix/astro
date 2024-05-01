@@ -23,6 +23,7 @@ def add_student(name, marks):
         st.warning("Student not added. Marks should be 75 or greater for admission.")
 
 
+
 # Function to filter students by course eligibility
 def filter_students_by_course(course):
     student_df = load_student_data()
@@ -69,8 +70,9 @@ elif page == 'Admission Checker':
     name = st.text_input("Enter student name to check admission:")
 
     if st.button('Check Admission'):  # Button click to check admission
-        # Admission checker functionality can be added here
-        st.write("Admission status functionality can be implemented here.")
+        admission_status = check_admission(name)
+        st.write(admission_status)
+
 
 elif page == 'Course Eligibility':
     st.subheader('Course Eligibility')
