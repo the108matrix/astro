@@ -28,14 +28,18 @@ I'm messing with the `streamlit` library because I want to work their new `st.ex
 cresp = requests.get(url='https://hartzell.io/stats/getcontacts')
 st.caption(body=f"{cresp.status_code} - {cresp.content.decode()}",unsafe_allow_html=True)
 df = pd.DataFrame(json.loads(cresp.content.decode()))
+
 edited = st.data_editor(df)
 st.caption(edited)
 
 email = st.text_input(label='email',value='',max_chars=50,type='default')
 pw = st.text_input(label='pw',value='',max_chars=50,type='password')
+
 st.caption(body=f"{email} {pw}")
+
 c = requests.post(url='https://hartzell.io/sec/getc',json={'sesh':'','email':email,'hash':'','exp':''})
 st.caption(f"{c.status_code} {c.content.decode()}")
+
 if c.status_code == 200: cdata = json.loads(c.content.decode())
 else: cdata = None
 if cdata and 'salt' in cdata.keys(): hash = hashlib.sha512(f"{cdata['salt']}{pw}")
