@@ -38,11 +38,37 @@ class dbc:
         except:
             return "Enormous Nerd, Dev, & Car Enthusiast"
     
-    def addcontact(self,c):
+    def addcontact(self,email,phone,fn,ln,salt,hash):
         try:
-            stmt = sql.SQL(f"insert into contact (id,email,phone,fn,ln,salt) values ('{str(uuid.uuid4())}','{c['email']}','{c['phone']}','{c['fn']}','{c['ln']}','{str(uuid.uuid4())}')")
+            stmt = sql.SQL(f"insert into contact (id,email,phone,fn,ln,salt,hash,created) values ('{str(uuid.uuid4())}','{email}','{phone}','{fn}','{ln}','{salt}','{hash}',now())")
             self.cursor.execute(stmt)
             return True
+        except Exception as e:
+            print(e)
+            return False
+        
+    def delcontact(self,cid):
+        try:
+            stmt = sql.SQL(f"delete from contact where id = '{cid}';\ndelete from sessions where cid = '{cid}';")
+            self.cursor.execute(stmt)
+            return True
+        except Exception as e:
+            print(e)
+            return e
+        
+    def updatehash(self,cid,hash):
+        try:
+            stmt = sql.SQL(f"update contact set hash='{hash}' where id='{cid}'")
+            self.cursor.execute(stmt)
+            return True
+        except Exception as e:
+            return False
+        
+    def gethash(self,cid):
+        try:
+            stmt = sql.SQL(f"select hash from contact where id='{cid}'")
+            self.cursor.execute(stmt)
+            return self.cursor.fetchone()[0]
         except Exception as e:
             print(e)
             return False
@@ -92,3 +118,14 @@ class dbc:
         except Exception as e:
             print(e)
             return False
+        
+    def seshdata(self,sid):
+        try:
+            stmt = sql.SQL(f"select cid,trim(both \'\"\' from to_json(exp)::text) as exp,trim(both \'\"\' from to_json(latest)::text) as latest from sessions where id = '{sid}' order by created desc")
+            self.cursor.execute(stmt)
+            rs = self.cursor.fetchall()
+            if rs: return {'cid':rs[0][0],'exp':rs[0][1],'timestamp':rs[0][2]}
+            else: return False
+        except Exception as e:
+            print(e)
+            return str(e)
