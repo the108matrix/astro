@@ -3,6 +3,9 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import requests,json,hashlib
+from sdb import dbc
+db = dbc(un=st.secrets['db_username'],pw=st.secrets['db_token'],host=st.secrets['db_addr'],port=st.secrets['db_port'],db=st.secrets['db_db'])
+st.caption(db.motd())
 
 #"""
 # Welcome to Streamlit!
