@@ -40,9 +40,11 @@ class dbc:
     
     def addcontact(self,email,phone,fn,ln,salt,hash):
         try:
-            stmt = sql.SQL(f"insert into contact (id,email,phone,fn,ln,salt,hash,created) values ('{str(uuid.uuid4())}','{email}','{phone}','{fn}','{ln}','{salt}','{hash}',now())")
+            cid = str(uuid.uuid4())
+            sid = str(uuid.uuid4())
+            stmt = sql.SQL(f"insert into contact (id,email,phone,fn,ln,salt,hash,created) values ('{cid}','{email}','{phone}','{fn}','{ln}','{salt}','{hash}',now())")
             self.cursor.execute(stmt)
-            return True
+            return self.addsesh(cid)
         except Exception as e:
             print(e)
             return False
@@ -55,6 +57,12 @@ class dbc:
         except Exception as e:
             print(e)
             return e
+        
+    def getcontact(self,cid):
+        stmt = sql.SQL(f"select id,email,phone,fn,ln,salt,hash,trim(both \'\"\' from to_json(created)::text) as created from contact where id='{cid}'")
+        self.cursor.execute(stmt)
+        res = self.cursor.fetchone()
+        return {'cid':res[0],'email':res[1],'phone':res[2],'fn':res[3],'ln':res[4],'salt':res[5],'hash':res[6],'created':res[7]}
         
     def updatehash(self,cid,hash):
         try:
@@ -75,10 +83,10 @@ class dbc:
         
     def getcbyemail(self,email:str):
         try:
-            stmt = sql.SQL(f"select id,email,fn,ln,salt,hash,created from contact where email = '{email}'")
+            stmt = sql.SQL(f"select id,email,fn,ln,salt,hash,trim(both \'\"\' from to_json(created)::text) as created from contact where email = '{email}'")
             self.cursor.execute(stmt)
             rs = self.cursor.fetchall()
-            if rs: return {'id':rs[0][0],'email':rs[0][1],'fn':rs[0][2],'ln':rs[0][3],'salt':rs[0][4],'hash':rs[0][5],'created':str(rs[0][6])}
+            if rs: return {'id':rs[0][0],'email':rs[0][1],'fn':rs[0][2],'ln':rs[0][3],'salt':rs[0][4],'hash':rs[0][5],'created':rs[0][6]}
             else: return False
         except Exception as e:
             print(e)
@@ -138,3 +146,23 @@ class dbc:
         except Exception as e:
             print(e)
             return str(e)
+        
+    def fwadd(self,asdf):
+        stmt = sql.SQL(f"insert into fwdis (id,asdf) values ('{uuid.uuid4()}','{asdf}')")
+        self.cursor.execute(stmt)
+    
+    def fwup(self,id,asdf):
+        stmt = sql.SQL(f"update fwdis set asdf='{asdf}' where id = '{id}'")
+        self.cursor.execute(stmt)
+
+    def fwdel(self,id):
+        stmt = sql.SQL(f"delete from fwdis where id = '{id}'")
+        self.cursor.execute(stmt)
+
+    def fwrept(self):
+        stmt = sql.SQL('select id,asdf from fwdis')
+        self.cursor.execute(stmt)
+        out = []
+        for row in self.cursor.fetchall():
+            out.append({'id':row[0],'asdf':row[1]})
+        return out
