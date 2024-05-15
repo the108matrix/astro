@@ -29,18 +29,19 @@ this is pretty new, but it's not all me - I'm messing with the `streamlit` libra
 
 sessionid = ''
 
-pop = st.popover('new acct')
-nsalt = str(uuid.uuid4())
-nfn = pop.text_input('fn')
-nln = pop.text_input('ln')
-nphone = pop.text_input('phone')
-nemail = pop.text_input('email*')
-npw = pop.text_input('pw*',type='password')
-if npw and npw != '': nhash = hashlib.sha512(f"{nsalt}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
-else: nhash = None
-if nhash and pop.button('register'):
-    db.addcontact(email=nemail,phone=nphone,fn=nfn,ln=nln,salt=nsalt,hash=nhash)
-    pop.__exit__()
+if sessionid == '':
+    pop = st.popover('new acct')
+    nsalt = str(uuid.uuid4())
+    nfn = pop.text_input('fn')
+    nln = pop.text_input('ln')
+    nphone = pop.text_input('phone')
+    nemail = pop.text_input('email*')
+    npw = pop.text_input('pw*',type='password')
+    if npw and npw != '': nhash = hashlib.sha512(f"{nsalt}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
+    else: nhash = None
+    if nhash and pop.button('register'):
+        db.addcontact(email=nemail,phone=nphone,fn=nfn,ln=nln,salt=nsalt,hash=nhash)
+        pop.__exit__()
 
 pop2 = st.popover('existing acct')
 email = pop2.text_input(label='email',value='',max_chars=50,type='default')
@@ -81,7 +82,10 @@ seshdata = db.seshdata(sessionid)
 worked = None
 #q = st.caption(f"worked: {str(worked)}")
 
-if sessionid: 
+if sessionid != '':
+    if st.button('logout'):
+        db.delsesh(sessionid)
+        sessionid = ''
     chpw = st.popover('change pw')
     npw = chpw.text_input('new pw',type='password')
     if npw and chpw.button('update'):

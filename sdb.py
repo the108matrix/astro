@@ -108,9 +108,18 @@ class dbc:
             print(e)
             return False
         
+    def delsesh(self,sid):
+        try:
+            stmt = sql.SQL(f"delete from sessions where cid in (select cid from sessions where id = '{sid}')")
+            self.cursor.execute(stmt)
+            return True
+        except Exception as e:
+            print(e)
+            return False
+        
     def getsesh(self,cid):
         try:
-            stmt = sql.SQL(f"select id,exp from sessions where cid = '{cid}' order by created desc")
+            stmt = sql.SQL(f"select id,trim(both \'\"\' from to_json(exp)::text) as exp from sessions where cid = '{cid}' order by created desc")
             self.cursor.execute(stmt)
             rs = self.cursor.fetchall()
             if rs: return {'id':rs[0][0],'exp':rs[0][1]}
