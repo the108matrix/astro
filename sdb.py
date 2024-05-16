@@ -81,23 +81,19 @@ class dbc:
             return False
         
     def getcbyemail(self,email:str):
-        try:
-            stmt = sql.SQL(f"select id,email,fn,ln,salt,hash,trim(both \'\"\' from to_json(created)::text) as created from contact where email = '{email}'")
-            self.cursor.execute(stmt)
-            rs = self.cursor.fetchall()
-            if rs: return {'id':rs[0][0],'email':rs[0][1],'fn':rs[0][2],'ln':rs[0][3],'salt':rs[0][4],'hash':rs[0][5],'created':rs[0][6]}
-            else: return False
-        except Exception as e:
-            print(e)
-            return False
+        stmt = sql.SQL(f"select id,email,fn,ln,salt,hash,trim(both \'\"\' from to_json(created)::text) as created from contact where email = '{email}'")
+        self.cursor.execute(stmt)
+        rs = self.cursor.fetchall()
+        if rs: return {'id':rs[0][0],'email':rs[0][1],'fn':rs[0][2],'ln':rs[0][3],'salt':rs[0][4],'hash':rs[0][5],'created':rs[0][6]}
+        else: return False
         
     def contactrept(self):
         try:
-            stmt = sql.SQL("select id,email,fn,ln from contact")
+            stmt = sql.SQL("select id,email,fn,ln,salt,hash from contact")
             self.cursor.execute(stmt)
             out = []
             for row in self.cursor.fetchall():
-                out.append({'id':row[0],'email':row[1],'fn':row[2],'ln':row[3]})
+                out.append({'id':row[0],'email':row[1],'fn':row[2],'ln':row[3],'salt':row[4],'hash':row[5]})
             return out
         except Exception as e:
             print(e)

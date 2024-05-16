@@ -14,24 +14,27 @@ I'm messing with the `streamlit` library because I want to test out their new `s
 """
 
 def login(email,pw):
-    #st.toast('login called')
-    tempc = db.getcbyemail(email)
-    loginpop.caption(tempc)
-    if tempc and 'salt' in tempc.keys() and loginpw: hash = hashlib.sha512(f"{tempc['salt']}{pw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
-    else: hash = None
-    if hash: loginpop.caption(hash)
-    if hash and loginpop.button(label='check pw'): 
-        if hash == st.session_state.c['hash']: loginpop.caption('correct pw')
-        else: loginpop.caption('incorrect pw')
-    if hash == tempc['hash']:
-        loginpop.caption('hashes mashes')
-        st.session_state.seshdata = db.getsesh(tempc['id'])
-        if not st.session_state.seshdata: st.session_state.seshdata = db.addsesh(st.session_state.c['id'])
-        loginpop.caption(str(st.session_state.seshdata))
-        st.session_state.c = tempc
-    tempc = None
-    if st.session_state.seshdata: st.toast(f"logged in with {st.session_state.seshdata['id']}")
-    return
+    try:
+        #st.toast('login called')
+        tempc = db.getcbyemail(email)
+        loginpop.caption(tempc)
+        if tempc and 'salt' in tempc.keys() and loginpw: hash = hashlib.sha512(f"{tempc['salt']}{pw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
+        else: hash = None
+        if hash: loginpop.caption(hash)
+        if hash and loginpop.button(label='check pw'): 
+            if hash == st.session_state.c['hash']: loginpop.caption('correct pw')
+            else: loginpop.caption('incorrect pw')
+        if hash == tempc['hash']:
+            loginpop.caption('hashes mashes')
+            st.session_state.seshdata = db.getsesh(tempc['id'])
+            if not st.session_state.seshdata: st.session_state.seshdata = db.addsesh(st.session_state.c['id'])
+            loginpop.caption(str(st.session_state.seshdata))
+            st.session_state.c = tempc
+        tempc = None
+        if st.session_state.seshdata: st.toast(f"logged in with {st.session_state.seshdata['id']}")
+        return
+    except Exception as e:
+        st.toast(str(e))
 
 def startup():
     if 'seshdata' not in st.session_state:
@@ -54,12 +57,14 @@ if st.session_state.seshdata is None:
     nphone = signpop.text_input('phone')
     nemail = signpop.text_input('email*')
     npw = signpop.text_input('pw*',type='password')
+    vpw = signpop.text_input('verify*',type='password')
     nsalt = str(uuid.uuid4())
-    if npw and npw != '': nhash = hashlib.sha512(f"{nsalt}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
+    if npw and npw != '' and npw == vpw: nhash = hashlib.sha512(f"{nsalt}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
     else: nhash = None
     if nhash and signpop.button('register'):
         st.session_state.seshdata = db.addcontact(email=nemail,phone=nphone,fn=nfn,ln=nln,salt=nsalt,hash=nhash)
         st.session_state.c = db.getcbyemail(nemail)
+        nfn,nln,nphone,nemail,npw,vpw,nsalt = '','','','','','',''
 
 if st.session_state.seshdata is None:
     loginpop = st.sidebar.expander('login')
@@ -77,12 +82,15 @@ if st.session_state.seshdata:
     if st.sidebar.button('logout'):
         db.delsesh(st.session_state.seshdata)
         st.session_state.seshdata = None
-    #chpw = st.sidebar.expander('change pw')
-    #npw = chpw.text_input('new pw',type='password')
-    #if npw and 'salt' in st.session_state.c.keys() and chpw.button('update'):
-    #    chash = hashlib.sha256(f"{st.session_state.c['salt']}{npw}".encode(encoding='utf-8'),usedforsecurity=True).hexdigest()
-    #    db.updatehash(cid=st.session_state.c['cid'],hash=chash)
-    #    st.toast('pw updated')
+    chpw = st.sidebar.expander('change pw')
+    npw = chpw.text_input('new pw',type='password')
+    if npw != '' and st.session_state.c and 'salt' in st.session_state.c.keys() and st.session_state.c['salt'] != '' and chpw.button('update'):
+        chash = hashlib.sha512(f"{st.session_state.c['salt']}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
+        db.updatehash(cid=st.session_state.c['cid'],hash=chash)
+        st.session_state.c['salt'] = chash
+        chpw.caption(f"current hash {st.session_state.c['hash']}")
+        chpw.caption(f"new hash {chash}")
+        st.toast('pw updated')
     st.link_button('DL my resume',url='https://hartzell.io/resume')
     fwd = db.fwrept()
     #st.caption(fwd)
@@ -115,14 +123,8 @@ if st.session_state.seshdata:
             st.toast('failed to delete acct')
             st.caption('not deleted')
 
-#st.sidebar.caption(f"sesh {st.session_state.seshdata}")
-#st.sidebar.caption(f"c {st.session_state.c}")
-
-#clist = db.contactrept()
-#df = pd.DataFrame(clist)
-#stuff = st.popover('data editor')
-#edited = stuff.data_editor(df)
-#st.caption(edited)
+st.sidebar.caption(f"sesh {st.session_state.seshdata}")
+st.sidebar.caption(f"c {st.session_state.c}")
 
 """
 `///streamlit testing zone///`   `///jank zone///`   `///streamlit testing zone///`
@@ -155,3 +157,7 @@ defautgraph.altair_chart(alt.Chart(df, height=700, width=700)
         color=alt.Color("idx", legend=None, scale=alt.Scale()),
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
+
+clist = db.contactrept()
+df = pd.DataFrame(clist)
+edited = st.data_editor(df,column_config={'id':None,'fn':None,'ln':None},use_container_width=True)
