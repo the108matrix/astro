@@ -25,6 +25,7 @@ db = dbc(un=st.secrets['db_username'],pw=st.secrets['db_token'],host=st.secrets[
 """
 """
 this is pretty neat, but it's not all me - I'm messing with the `streamlit` library because I want to test out their new `st.data_editor` feature in some private code.
+yeet
 """
 
 #if 'count' not in st.session_state:
