@@ -2,3 +2,4 @@
 __pycache__/sdb.cpython-311.pyc
 *.pyc
 *.pyc
+.streamlit/secrets.toml
