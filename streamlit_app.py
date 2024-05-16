@@ -21,11 +21,10 @@ db = dbc(un=st.secrets['db_username'],pw=st.secrets['db_token'],host=st.secrets[
 #https://docs.streamlit.io/develop/concepts/design/dataframes?ref=blog.streamlit.io
 
 """
-`///streamlit testing zone///`   `///streamlit testing zone///`   `///streamlit testing zone///`
+`///streamlit testing zone///`   `///jank zone///`   `///streamlit testing zone///`
 """
 """
 this is pretty neat, but it's not all me - I'm messing with the `streamlit` library because I want to test out their new `st.data_editor` feature in some private code.
-yeet
 """
 
 #if 'count' not in st.session_state:
@@ -40,97 +39,79 @@ yeet
 #	kwargs=dict(decrement_value=1))
 #st.write('Count = ', st.session_state.count)
 
-if 'sessionid' not in st.session_state: 
-    st.session_state.sessionid = ''
-    seshdata = None
-    c = None
-st.caption(f"sid {st.session_state.sessionid}")
-if st.session_state.sessionid != '':
-    seshdata = db.seshdata(st.session_state.sessionid)
-    #st.caption(seshdata)
-    c = db.getcontact(seshdata['cid'])
-    if datetime.datetime.now() > datetime.datetime.strptime(seshdata['exp'],'%Y-%m-%dT%H:%M:%S+00:00'):
-        st.session_state.sessionid = ''
-        seshdata = None
+def login(email,pw):
+    #st.toast('login called')
+    tempc = db.getcbyemail(email)
+    #st.toast(tempc)
+    if tempc and 'salt' in tempc.keys() and loginpw: hash = hashlib.sha512(f"{tempc['salt']}{pw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
+    else: return
+    st.toast(hash)
+    if hash: loginpop.caption(hash)
+    if hash and loginpop.button(label='check pw'): 
+        if hash == st.session_state.c['hash']: loginpop.caption('correct pw')
+        else: loginpop.caption('incorrect pw')
+    if hash == tempc['hash']:
+        st.session_state.seshdata = db.getsesh(tempc['id'])
+        if not st.session_state.seshdata: st.session_state.seshdata = db.addsesh(st.session_state.c['id'])
+        loginpop.caption(str(st.session_state.seshdata))
+        st.session_state.c = tempc
+    tempc = None
+    st.toast(f"logged in with {st.session_state.seshdata}")
+    return
 
-if st.session_state.sessionid == '':
-    c = None
-    pop = st.popover('new acct')
+def startup():
+    if 'seshdata' not in st.session_state:
+        st.session_state.seshdata = None
+    if 'c' not in st.session_state:
+        st.session_state.c = None
+    st.caption(f"sd {st.session_state.seshdata}")
+    st.caption(body=f"c {st.session_state.c}")
+    if st.session_state.seshdata:
+        st.session_state.c = db.getcontact(st.session_state.seshdata['cid'])
+        if datetime.datetime.now() > datetime.datetime.strptime(st.session_state.seshdata['exp'],'%Y-%m-%dT%H:%M:%S+00:00'):
+            st.session_state.seshdata = None
+            st.session_state.c = None
+            
+startup()
+
+if st.session_state.seshdata is None:
+    signpop = st.sidebar.popover('create acct')
+    nfn = signpop.text_input('fn')
+    nln = signpop.text_input('ln')
+    nphone = signpop.text_input('phone')
+    nemail = signpop.text_input('email*')
+    npw = signpop.text_input('pw*',type='password')
     nsalt = str(uuid.uuid4())
-    nfn = pop.text_input('fn')
-    nln = pop.text_input('ln')
-    nphone = pop.text_input('phone')
-    nemail = pop.text_input('email*')
-    npw = pop.text_input('pw*',type='password')
     if npw and npw != '': nhash = hashlib.sha512(f"{nsalt}{npw}".encode(encoding="utf-8"),usedforsecurity=True).hexdigest()
     else: nhash = None
-    if nhash and pop.button('register'):
-        st.session_state['sessionid'] = db.addcontact(email=nemail,phone=nphone,fn=nfn,ln=nln,salt=nsalt,hash=nhash)['id']
+    if nhash and signpop.button('register'):
+        st.session_state.seshdata = db.addcontact(email=nemail,phone=nphone,fn=nfn,ln=nln,salt=nsalt,hash=nhash)
 
-if st.session_state.sessionid == '':
-    c = None
-    pop2 = st.popover('existing acct')
-    email = pop2.text_input(label='email',value='',max_chars=50,type='default')
-    pw = pop2.text_input(label='pw',value='',max_chars=50,type='password')
-    if email != '': c = db.getcbyemail(email)
-    pop2.caption(c)
+if st.session_state.seshdata is None:
+    loginpop = st.sidebar.expander('login')
+    loginemail = loginpop.text_input(label='email',value='',max_chars=50,type='default')
+    loginpw = loginpop.text_input(label='pw',value='',max_chars=50,type='password')
+    if loginemail != '': c = db.getcbyemail(loginemail)
+    loginpop.caption(st.session_state.c)
 
-    if c and 'salt' in c.keys() and pw: hash = hashlib.sha512(f"{c['salt']}{pw}".encode(encoding="utf-8"),usedforsecurity=True)
-    else: hash = None
-    if hash: pop2.caption(str(hash.hexdigest()))
-
-    def savepw():
-        pop2.caption(str(db.updatehash(cid=c['cid'],hash=hash.hexdigest())))
-    def checkhash():
-        if hash.hexdigest() == c['hash']: 
-            pop2.caption('correct pw')
-            return True
-        else: 
-            pop2.caption('incorrect pw')
-            return False
-    if st.session_state.sessionid and pop2.button(label='save pw'):
-        if hash: savepw()
-    if pop2.button(label='check pw'):
-        if hash: checkhash()
-
-    if pop2.button('login'): 
-        if hash and checkhash():
-            ex = db.getsesh(c['id'])
-            if not ex: 
-                ex = db.addsesh(c['id'])
-                st.session_state['sessionid'] = ex['id']
-                st.session_state.sessionid = ex['id']
-            #for k in ex.keys():
-            #        pop2.caption(f"{k}: {ex[k]}",help=str(ex[k]))
-            pop2.caption(str(ex))
-            st.session_state.sessionid = ex['id']
-    seshdata = db.seshdata(st.session_state.sessionid)
+    if loginpop.button('login'): 
+        login(loginemail,loginpw)
     #st.caption(f"sesh: {str(seshdata)}")
     worked = None
     #q = st.caption(f"worked: {str(worked)}")
 
-if st.session_state.sessionid != '':
-    if st.button('logout'):
-        db.delsesh(st.session_state.sessionid)
-        st.session_state.sessionid = ''
-    chpw = st.popover('change pw')
+if st.session_state.seshdata:
+    st.sidebar.caption(f"logged in as {st.session_state.c['email']}")
+    if st.sidebar.button('logout'):
+        db.delsesh(st.session_state.seshdata)
+        st.session_state.seshdata = None
+    chpw = st.sidebar.expander('change pw')
     npw = chpw.text_input('new pw',type='password')
-    if npw and 'salt' in c.keys() and chpw.button('update'):
-        chash = hashlib.sha256(f"{c['salt']}{npw}".encode(encoding='utf-8'),usedforsecurity=True).hexdigest()
-        db.updatehash(cid=c['cid'],hash=chash)
+    if npw and 'salt' in st.session_state.c.keys() and chpw.button('update'):
+        chash = hashlib.sha256(f"{st.session_state.c['salt']}{npw}".encode(encoding='utf-8'),usedforsecurity=True).hexdigest()
+        db.updatehash(cid=st.session_state.c['cid'],hash=chash)
         st.toast('pw updated')
     st.link_button('DL my resume',url='https://hartzell.io/resume')
-    if st.session_state.sessionid and st.button('delete acct'):
-        worked = db.delcontact(seshdata['cid'])
-        st.caption(str(worked))
-        if worked: 
-            st.toast('account deleted')
-            st.caption('deleted')
-            st.session_state.sessionid = ''
-        else: 
-            st.toast('failed to delete acct')
-            st.caption('not deleted')
-    
     fwd = db.fwrept()
     #st.caption(fwd)
     fwf = pd.DataFrame(fwd)
@@ -140,20 +121,27 @@ if st.session_state.sessionid != '':
     st.caption(f'rows {rows}')
     rows2 = edits.to_dict('records')
     st.caption(f'rows2 {rows2}')
-    ops = []
     if st.button('save fw'):
         for row in rows:
             if row not in rows2: 
                 db.fwdel(row['id'])
-                #ops.append('fwdel')
             else:
                 for row2 in rows2:
                     if row['id'] == row2['id'] and row['asdf'] != row2['asdf']:
                         db.fwup(row2['id'],row2['asdf'])
-                        #ops.append('fwup')
         for row2 in rows2:
             if row2 not in rows: db.fwadd(row2['asdf'])
-    #st.caption(f'ops {ops}')
+    delpop = st.sidebar.expander('delete account')
+    if st.session_state.seshdata and delpop.button('really delete account'):
+        worked = db.delcontact(st.session_state.seshdata['cid'])
+        st.caption(str(worked))
+        if worked: 
+            st.toast('account deleted')
+            st.caption('deleted')
+            st.session_state.seshdata = None
+        else: 
+            st.toast('failed to delete acct')
+            st.caption('not deleted')
 
 
 #accttonuke = st.text_input('cid to nuke')
@@ -196,5 +184,5 @@ if st.session_state.sessionid != '':
 #    ))
 
 """
-`///streamlit testing zone///`   `///streamlit testing zone///`   `///streamlit testing zone///`
+`///streamlit testing zone///`   `///jank zone///`   `///streamlit testing zone///`
 """

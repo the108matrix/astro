@@ -41,7 +41,6 @@ class dbc:
     def addcontact(self,email,phone,fn,ln,salt,hash):
         try:
             cid = str(uuid.uuid4())
-            sid = str(uuid.uuid4())
             stmt = sql.SQL(f"insert into contact (id,email,phone,fn,ln,salt,hash,created) values ('{cid}','{email}','{phone}','{fn}','{ln}','{salt}','{hash}',now())")
             self.cursor.execute(stmt)
             return self.addsesh(cid)
@@ -111,7 +110,7 @@ class dbc:
             exp = now+timedelta(weeks=1)
             stmt = sql.SQL(f"insert into sessions (id,cid,exp,latest,created) values ('{id}','{cid}','{exp.strftime('%Y-%m-%dT%H:%M:%SZ')}','{now}','{now}')")
             self.cursor.execute(stmt)
-            return {'id':id,'exp':exp.strftime('%Y-%m-%dT%H:%M:%SZ')}
+            return {'id':id,'cid':cid,'exp':exp.strftime('%Y-%m-%dT%H:%M:%SZ')}
         except Exception as e:
             print(e)
             return False
@@ -127,10 +126,10 @@ class dbc:
         
     def getsesh(self,cid):
         try:
-            stmt = sql.SQL(f"select id,trim(both \'\"\' from to_json(exp)::text) as exp from sessions where cid = '{cid}' order by created desc")
+            stmt = sql.SQL(f"select id,cid,trim(both \'\"\' from to_json(exp)::text) as exp from sessions where cid = '{cid}' order by created desc")
             self.cursor.execute(stmt)
             rs = self.cursor.fetchall()
-            if rs: return {'id':rs[0][0],'exp':rs[0][1]}
+            if rs: return {'id':rs[0][0],'cid':rs[0][1],'exp':rs[0][2]}
             else: return False
         except Exception as e:
             print(e)
@@ -138,10 +137,10 @@ class dbc:
         
     def seshdata(self,sid):
         try:
-            stmt = sql.SQL(f"select cid,trim(both \'\"\' from to_json(exp)::text) as exp,trim(both \'\"\' from to_json(latest)::text) as latest from sessions where id = '{sid}' order by created desc")
+            stmt = sql.SQL(f"select id,cid,trim(both \'\"\' from to_json(exp)::text) as exp from sessions where id = '{sid}' order by created desc")
             self.cursor.execute(stmt)
             rs = self.cursor.fetchall()
-            if rs: return {'cid':rs[0][0],'exp':rs[0][1],'timestamp':rs[0][2]}
+            if rs: return {'id':rs[0][0],'cid':rs[0][1],'exp':rs[0][2]}
             else: return False
         except Exception as e:
             print(e)
