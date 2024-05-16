@@ -99,7 +99,7 @@ if not filtered_df.empty:
     min_round = math.ceil(min_mag)
     
     max_round = math.floor(max_mag)
-    print(min_round,max_round)
+    #print(min_round,max_round)
     
     magnitude_ranges = []
     
@@ -134,7 +134,7 @@ if not filtered_df.empty:
         # if max_mag<=max_round:
         #     magnitude_ranges.append(range_str)
         magnitude_ranges.append(range_str)
-    print (magnitude_ranges)
+    #print (magnitude_ranges)
     magnitude_counts = [filtered_df[(filtered_df['Magnitude'] >= min_val) & (filtered_df['Magnitude'] < max_val)].shape[0] for min_val, max_val in magnitude_ranges]
     
     # Create a DataFrame for plotting
