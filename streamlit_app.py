@@ -158,6 +158,6 @@ defautgraph.altair_chart(alt.Chart(df, height=700, width=700)
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
 
-clist = db.contactrept()
-df = pd.DataFrame(clist)
-edited = st.data_editor(df,column_config={'id':None,'fn':None,'ln':None},use_container_width=True)
+#clist = db.contactrept()
+#df = pd.DataFrame(clist)
+#edited = st.data_editor(df,column_config={'id':None,'fn':None,'ln':None},use_container_width=True)
