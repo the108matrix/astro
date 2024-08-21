@@ -1,3 +1,4 @@
+
 from copy import deepcopy
 from importlib import reload
 from itertools import product as cproduct
@@ -7,6 +8,7 @@ import itertools
 import json
 import math
 import os
+
 import pandas as pd
 import pm4py
 import random
@@ -214,6 +216,7 @@ def set_generator_experiments(generator_params):
     else:  # Manual
         sel_features = st.multiselect("Selected features", list(generator_params['experiment'].keys()))
         experiments = handle_manual_option(sel_features, grid_option)
+
 
     generator_params['experiment'] = experiments
     st.write(f"...result in {len(generator_params['experiment'])} experiment(s)")
