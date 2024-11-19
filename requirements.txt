@@ -1,3 +1,8 @@
 altair
 pandas
 streamlit
+jyotishyamitra
+datetime
+timedelta
+plotly.express
+pyswisseph==2.8.0.post1
